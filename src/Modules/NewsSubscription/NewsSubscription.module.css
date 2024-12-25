@@ -1,0 +1,25 @@
+.title {
+    width: fit-content;
+    margin: 0 auto 30px;
+    font-size: 48px;
+}
+
+.form {
+    padding: 5px;
+    width: fit-content;
+    margin: 0 auto;
+    border-radius: 25px;
+
+    display: flex;
+    background-color: var(--primary_color);
+}
+
+.btn {
+    border-radius: 0 20px 20px 0;
+    
+}
+
+.input {
+    border-radius: 20px 0 0 20px;
+    width: 20vw;
+}

@@ -1,0 +1,26 @@
+.toggler {
+    width: 80px;
+    height: 40px;
+    padding: 2.5px;
+    border-radius: 20px;
+
+    background: var(--background_color);
+    cursor: pointer;
+}
+
+.toggler_toggled {
+
+    .toggler_mark {
+        translate: 40px;
+    }
+}
+
+.toggler_mark {
+    width: 35px;
+    height: 35px;
+    padding: 3px;
+    border-radius: 50%;
+    background-color: var(--btn_color);
+    transition: all 0.3s;
+}
+

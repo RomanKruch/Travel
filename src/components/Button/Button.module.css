@@ -1,0 +1,22 @@
+.btn {
+    display: block;
+    width: fit-content;
+    height: 45px;
+    padding: 7px 30px;
+    border-radius: 20px;
+    
+    background-color: var(--btn_color);
+    transition: all 0.3s;
+
+    color: #F2FCFF;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.btn:hover {
+    background-color: var(--hover);
+}
+
+.btn:active {
+    background-color: var(--btn_color);
+}

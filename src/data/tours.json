@@ -1,0 +1,123 @@
+[
+    {
+      "title": "Sunny Beaches of Maldives",
+      "description": "Relax on the pristine white sands and explore crystal-clear waters in this tropical paradise.",
+      "photo": "https://www.summerbeachmaldives.com/Upload/resized-Summer-Beach-Maldives-89812e07-78fd-4519-aafa-15b6359d692a.jpg",
+      "location": "Maldives",
+      "price": 1500,
+      "id": "23131"
+    },
+    {
+      "title": "Alpine Adventure in Switzerland",
+      "description": "Discover breathtaking mountain peaks and charming villages in the heart of Europe.",
+      "photo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQHkex3i3XqMof_43tNSBgjKb6tPRFUAiiy9g&s",
+      "location": "Switzerland",
+      "price": 2200,
+      "id": "2asdad"
+    },
+    {
+      "title": "Safari in Serengeti",
+      "description": "Experience the African wilderness with guided tours through the Serengeti National Park.",
+      "photo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTzJLYpItf-alIPECuotX8N4KwpZJzW9nB5kg&s",
+      "location": "Tanzania",
+      "price": 1800,
+      "id": "2asdaadadd"
+    },
+    {
+      "title": "Cultural Journey in Kyoto",
+      "description": "Explore ancient temples, vibrant gardens, and traditional tea houses in historic Kyoto.",
+      "photo": "https://www.datocms-assets.com/101439/1700744781-kyoto.jpg?auto=format&fit=crop&h=800&w=1200",
+      "location": "Japan",
+      "price": 1300,
+      "id": "2adgssgad"
+    },
+    {
+      "title": "Road Trip Through Iceland",
+      "description": "Drive through Iceland’s dramatic landscapes featuring waterfalls, glaciers, and volcanoes.",
+      "photo": "https://example.com/photos/iceland.jpg",
+      "location": "Iceland",
+      "price": 1700,
+      "id": "21sf32fad"
+    },
+    {
+      "title": "Island Hopping in Greece",
+      "description": "Visit stunning Greek islands, including Santorini and Mykonos, with beautiful whitewashed architecture.",
+      "photo": "https://example.com/photos/greece.jpg",
+      "location": "Greece",
+      "price": 1400,
+      "id": "2asdad2wstfad"
+    },
+    {
+      "title": "Wildlife Exploration in Borneo",
+      "description": "Get up close with orangutans and other exotic wildlife in Borneo's rainforests.",
+      "photo": "https://example.com/photos/borneo.jpg",
+      "location": "Malaysia",
+      "price": 1600,
+      "id": "2asda1rwfwste2d"
+    },
+    {
+      "title": "City Break in New York",
+      "description": "Enjoy the bustling streets, iconic landmarks, and world-class entertainment of NYC.",
+      "photo": "https://example.com/photos/newyork.jpg",
+      "location": "USA",
+      "price": 1100,
+      "id": "2asdr2f2ae5rfwad"
+    },
+    {
+      "title": "Romantic Getaway in Paris",
+      "description": "Experience the magic of Paris, from the Eiffel Tower to charming streetside cafes.",
+      "photo": "https://example.com/photos/paris.jpg",
+      "location": "France",
+      "price": 1500,
+      "id": "2asd2ff2r22421r1ad"
+    },
+    {
+      "title": "Desert Adventure in Dubai",
+      "description": "Enjoy a blend of luxury and adventure in the deserts and skyscrapers of Dubai.",
+      "photo": "https://example.com/photos/dubai.jpg",
+      "location": "UAE",
+      "price": 1400,
+      "id": "2asd1hjkl6lutad"
+    },
+    {
+      "title": "Trekking in Patagonia",
+      "description": "Explore rugged landscapes and pristine wilderness in this remote South American region.",
+      "photo": "https://example.com/photos/patagonia.jpg",
+      "location": "Argentina & Chile",
+      "price": 2000,
+      "id": "2asdadwhrenrsfegh"
+    },
+    {
+      "title": "Ancient Wonders of Egypt",
+      "description": "Discover the Pyramids of Giza, the Sphinx, and the Nile River in this timeless destination.",
+      "photo": "https://example.com/photos/egypt.jpg",
+      "location": "Egypt",
+      "price": 1200,
+      "id": "2asqegwh4j5k7nyrtbedad"
+    },
+    {
+      "title": "Rainforest Retreat in Costa Rica",
+      "description": "Reconnect with nature in Costa Rica’s lush rainforests and pristine beaches.",
+      "photo": "https://example.com/photos/costarica.jpg",
+      "location": "Costa Rica",
+      "price": 1400,
+      "id": "2asda2whje4nbwd"
+    },
+    {
+      "title": "Historic Tour of Rome",
+      "description": "Walk through history as you explore the Colosseum, Vatican City, and Roman Forum.",
+      "photo": "https://example.com/photos/rome.jpg",
+      "location": "Italy",
+      "price": 1200,
+      "id": "2asd12gqwa3jad"
+    },
+    {
+      "title": "Island Escape in Fiji",
+      "description": "Unwind on serene beaches and explore coral reefs in the heart of the Pacific.",
+      "photo": "https://example.com/photos/fiji.jpg",
+      "location": "Fiji",
+      "price": 1900,
+      "id": "2asdqwjenbvwad"
+    }
+  ]
+  
