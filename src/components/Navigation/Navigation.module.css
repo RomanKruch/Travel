@@ -1,4 +1,4 @@
-.list {
+.navigation {
     display: flex;
     align-items: center;
     gap: 25px;
@@ -7,6 +7,11 @@
 .link {
     font-size: 24px;
     transition: all 0.3s;
+}
+
+.link_active {
+    color: var(--hover);
+    font-weight: 700;
 }
 
 .link:hover {

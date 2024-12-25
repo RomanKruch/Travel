@@ -1,19 +1,25 @@
-import s from "./Navigation.module.css"
+import { NavLink } from 'react-router-dom';
+import s from './Navigation.module.css';
+
+interface IActiveClass {
+  isActive: boolean;
+}
 
 const Navigation = () => {
+  const activeClass = ({ isActive }: IActiveClass) =>
+    isActive ? `${s.link} ${s.link_active}` : s.link;
+
   return (
-    <nav>
-      <ul className={s.list}>
-        <li>
-          <a href="/" className={s.link}>Home</a>
-        </li>
-        <li>
-          <a href="/" className={s.link}>Routes</a>
-        </li>
-        <li>
-          <a href="/" className={s.link}>About</a>
-        </li>
-      </ul>
+    <nav className={s.navigation}>
+      <NavLink to="/" className={activeClass} end>
+        Home
+      </NavLink>
+      <NavLink to="/tours" className={activeClass} end>
+        Tours
+      </NavLink>
+      <NavLink to="/about" className={activeClass} end>
+        About
+      </NavLink>
     </nav>
   );
 };

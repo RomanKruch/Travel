@@ -28,7 +28,6 @@ main {
    font-family: 'Open Sans', sans-serif;
    color: var(--text_color);
    background-color: var(--background_color);
-   transition: all 0.3s;
 
    padding-bottom: 500px;
 }
