@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import TourItem from '../../components/TourItem/TourItem';
-import tourItemType from '../../types/tourItemType';
+import ITourItem from '../../types/ITourItem';
 import s from './ToursSection.module.css';
 import Button from '../../components/Button/Button';
 
 interface IProps {
-  toursList: tourItemType[];
+  toursList: ITourItem[];
 }
 
 const ToursSection = ({ toursList }: IProps) => {

@@ -1,4 +1,4 @@
-interface tourItemType {
+interface ITourItem {
     title: string;
     description: string;
     photo: string;
@@ -7,4 +7,4 @@ interface tourItemType {
     id: string;
 }
 
-export default tourItemType;
+export default ITourItem;

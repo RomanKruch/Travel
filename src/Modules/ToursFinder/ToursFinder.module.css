@@ -1,0 +1,41 @@
+.section {
+    padding-top: 100px;
+}
+
+.wrap {
+    display: grid;
+    grid-template-columns: 400px 1fr;
+}
+
+.form {
+    height: fit-content;
+    padding: 20px;
+    border-radius: 20px;
+    background: var(--primary_color);
+}
+
+.label {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+
+    font-size: 20px;
+    color: var(--text_color);   
+}
+
+
+
+.list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: auto;
+    justify-items: center;
+    gap: 20px;
+}
+
+.btn_wrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}

@@ -1,15 +1,26 @@
 import s from './Input.module.css';
 
+// type setString = (value: string) => void;
+// type setNumber = (value: number) => void;
+
 interface IProps {
   text?: string;
   className?: string;
-  value: string;
-  setValue: (value: string) => void;
+  value: string | number;
+  setValue: (v: any) => void;
+  number?: boolean;
 }
 
-const Input = ({ text = '', className = '', value, setValue }: IProps) => {
+const Input = ({
+  text = '',
+  className = '',
+  value,
+  setValue,
+  number,
+}: IProps) => {
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setValue(e.target.value);
+    if (number) setValue(+e.target.value);
+    else setValue(e.target.value);
   };
 
   return (

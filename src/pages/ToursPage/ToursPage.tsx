@@ -1,8 +1,10 @@
+import ToursFinder from "../../Modules/ToursFinder/ToursFinder";
+
 const ToursPage = () => { 
  
 return ( 
     <main> 
-        <h1>TOURS</h1>
+        <ToursFinder />
     </main> 
 )} 
  
