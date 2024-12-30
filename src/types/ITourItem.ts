@@ -3,7 +3,7 @@ interface ITourItem {
     description: string;
     photo: string;
     location: string;
-    price: number,
+    price: number;
     id: string;
 }
 
