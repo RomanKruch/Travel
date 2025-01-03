@@ -8,7 +8,7 @@ import App from './App.tsx';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <APIProvider apiKey="AIzaSyABzm_3S836Zp-luXbvjC8zPs_IfV3Y8Nw">
+    <APIProvider apiKey="">
       <BrowserRouter>
         <App />
       </BrowserRouter>
