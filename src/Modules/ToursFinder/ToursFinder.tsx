@@ -18,7 +18,7 @@ interface IFormValue {
 const initFormValue: IFormValue = {
   title: '',
   location: '',
-  price: 0,
+  price: 2500,
 };
 
 const ToursFinder = () => {
@@ -92,7 +92,7 @@ const ToursFinder = () => {
             <RangeInput
               value={formValue.price}
               setValue={onChange('price')}
-              maxValue={1500}
+              maxValue={2500}
             />
           </label>
 

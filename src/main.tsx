@@ -1,14 +1,17 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
+import { APIProvider } from '@vis.gl/react-google-maps';
 import './index.css';
 
 import App from './App.tsx';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
+    <APIProvider apiKey="AIzaSyABzm_3S836Zp-luXbvjC8zPs_IfV3Y8Nw">
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </APIProvider>
   </StrictMode>,
 );

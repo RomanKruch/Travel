@@ -1,3 +1,8 @@
+interface ICords {
+    lat: number;
+    lng: number;
+}
+
 interface ITourItem {
     title: string;
     description: string;
@@ -5,6 +10,7 @@ interface ITourItem {
     location: string;
     price: number;
     id: string;
+    cords: ICords
 }
 
 export default ITourItem;
