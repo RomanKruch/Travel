@@ -6,7 +6,6 @@ import ToursPage from './pages/ToursPage/ToursPage';
 
 function App() {
   const [isDark, setIsDark] = useState(false);
-
   return (
     <>
       <Header isToggled={isDark} setIsToggled={setIsDark} />

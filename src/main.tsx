@@ -8,7 +8,7 @@ import App from './App.tsx';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <APIProvider apiKey="">
+    <APIProvider apiKey={import.meta.env.VITE_MAP_API_KEY}>
       <BrowserRouter>
         <App />
       </BrowserRouter>
