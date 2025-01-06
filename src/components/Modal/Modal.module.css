@@ -1,7 +1,44 @@
+@keyframes opening_over {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes closing_over {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+@keyframes opening_modal {
+    from {
+        transform: scale(0);
+    }
+    to {
+        transform: scale(1);
+    }
+}
+
+@keyframes closing_modal {
+    from {
+        transform: scale(1);
+    }
+    to {
+        transform: scale(0);
+    }
+}
+
 .overlay {
     position: fixed;
     top: 0;
     left: 0;
+    opacity: 0;
 
     width: 100vw;
     height: 100vh;
@@ -11,6 +48,16 @@
     display: flex;
     justify-content: center;
     align-items: center;
+
+    animation-name: opening_over ;
+    animation-duration: 0.3s;
+    animation-fill-mode: forwards;
+}
+
+.overlay_closing {
+    animation-name: closing_over ;
+    animation-duration: 0.3s;
+    animation-fill-mode: forwards;
 }
 
 .modal {
@@ -21,6 +68,16 @@
     overflow: hidden;
 
     position: relative;
+
+    animation-name: opening_modal;
+    animation-duration: 0.3s;
+    animation-fill-mode: forwards;
+}
+
+.modal_closing {
+    animation-name: closing_modal ;
+    animation-duration: 0.3s;
+    animation-fill-mode: forwards;
 }
 
 .btn {

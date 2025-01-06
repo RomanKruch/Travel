@@ -2,6 +2,7 @@ import s from './Modal.module.css';
 import { createPortal } from 'react-dom';
 import Button from '../Button/Button';
 import CloseIcon from '../../icons/CloseIcon';
+import { useState } from 'react';
 
 const modalRoot = document.getElementById('modal_root') as HTMLElement;
 
@@ -11,17 +12,29 @@ interface IProps {
 }
 
 const Modal = ({ setIsOpen, children }: IProps) => {
-  const onClose = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+  const [isClosing, setIsClosing] = useState(false);
+
+  const onClickOver = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     if (e.target === e.currentTarget) {
-      setIsOpen(false);
+      onClose();
     }
   };
 
+  const onClose =  () => {
+    setIsClosing(true);
+    setTimeout(() => {
+      setIsOpen(false);
+    }, 300);
+  };
+
   return createPortal(
-    <div className={s.overlay} onClick={onClose}>
-      <div className={s.modal}>
-        <Button className={s.btn} onClick={() => setIsOpen(false)}>
-          <CloseIcon/>
+    <div
+      className={`${s.overlay} ${isClosing ? s.overlay_closing : ''}`}
+      onClick={onClickOver}
+    >
+      <div className={`${s.modal} ${isClosing ? s.modal_closing : ''}`}>
+        <Button className={s.btn} onClick={onClose}>
+          <CloseIcon />
         </Button>
         {children}
       </div>
