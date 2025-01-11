@@ -7,6 +7,8 @@
   --btn_color: #FF6F61;
   --text_color: #262C38;
   --hover: #fd4c3c;
+  --input_hover: #06b6d5;
+  --error_color: #ff2c2c;
 }
 
 .dark {
@@ -15,6 +17,8 @@
   --btn_color: #1B1E2A;
   --text_color: #EAF7FD;
   --hover: #00bbd8;
+  --input_hover: #00bbd8;
+  --error_color: #ff2b2b;
 }
 
 * {

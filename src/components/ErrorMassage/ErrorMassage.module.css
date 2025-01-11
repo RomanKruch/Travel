@@ -1,0 +1,15 @@
+.error_text {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 10;
+
+    width: fit-content;
+    padding: 10px 20px;
+    border-radius: 20px;
+    background-color: rgb(207, 33, 33);
+    color: #F2FCFF;
+    font-size: 24px;
+    font-weight: 700;
+}
+

@@ -61,8 +61,8 @@
 }
 
 .modal {
-    width: 70vw;
-    height: 70vh;
+    min-width: 20vw;
+    min-height: 20vh;
     border-radius: 20px;
     background: var(--background_color);
     overflow: hidden;
