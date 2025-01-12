@@ -4,6 +4,7 @@ import s from './Hero.module.css';
 import Button from '../../components/Button/Button';
 import Modal from '../../components/Modal/Modal';
 import LoginModal from '../../components/LoginModal/LoginModal';
+import SignUpModal from '../../components/SignUpModal/SignUpModal';
 
 interface IProps {
   isDark: boolean;
@@ -34,7 +35,7 @@ const Hero = ({ isDark }: IProps) => {
 
           {isOpen && (
             <Modal setIsOpen={setIsOpen}>
-              <LoginModal />
+              <SignUpModal />
             </Modal>
           )}
         </div>

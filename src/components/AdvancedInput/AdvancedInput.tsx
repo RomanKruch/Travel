@@ -1,12 +1,14 @@
 import { v4 as uuid } from 'uuid';
 import s from './AdvancedInput.module.css';
-import { useRef, } from 'react';
+import { useRef } from 'react';
+import { createClassName } from '../../helpers/createClassName';
 
 interface IProps {
   placeholder: string;
   value: string;
   setValue: (value: string) => void;
   error?: string;
+  className?: string;
 }
 
 const AdvancedInput = ({
@@ -14,6 +16,7 @@ const AdvancedInput = ({
   value,
   setValue,
   error = '',
+  className = '',
 }: IProps) => {
   const id = useRef(uuid());
 
@@ -22,9 +25,9 @@ const AdvancedInput = ({
   };
 
   return (
-    <div className={s.input_wrap}>
+    <div className={s.input_wrap + ' ' + className}>
       <input
-        className={`${s.input} ${error ? s.input_error : ''}`}
+        className={createClassName(s.input, s.input_error, !!error)}
         type="text"
         id={id.current}
         value={value}
@@ -32,7 +35,7 @@ const AdvancedInput = ({
         placeholder=" "
       />
       <label
-        className={`${s.label} ${error ? s.label_error : ''}`}
+        className={createClassName(s.label, s.label_error, !!error)}
         htmlFor={id.current}
       >
         {placeholder}
