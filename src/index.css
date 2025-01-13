@@ -46,6 +46,10 @@ a {
   color: var(--text_color);
 }
 
+p {
+  font-family: 'Open Sans', sans-serif;
+}
+
 h1, h2, h3 {
   font-family: 'Poppins', sans-serif;
   font-weight: 700;

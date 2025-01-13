@@ -5,6 +5,11 @@
     text-align: center;
 }
 
+
+.form {
+    margin-bottom: 10px;
+}
+
 .title {
     color: var(--text_color);
     font-size: 40px;
@@ -18,4 +23,19 @@
 
 .btn {
     width: 100%;
+}
+
+.redirect {
+    font-size: 18px;
+}
+
+.redirect_link {
+    font-size: 20px;
+    color: var(--btn_color);
+    transition: all 0.3s;
+}
+
+.redirect_link:hover {
+    color: var(--hover);
+    text-decoration: underline;
 }

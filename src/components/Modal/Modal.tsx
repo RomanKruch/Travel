@@ -7,24 +7,22 @@ import { useState } from 'react';
 const modalRoot = document.getElementById('modal_root') as HTMLElement;
 
 interface IProps {
-  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  onClose: () => void;
   children?: JSX.Element;
 }
 
-const Modal = ({ setIsOpen, children }: IProps) => {
+const Modal = ({ onClose, children }: IProps) => {
   const [isClosing, setIsClosing] = useState(false);
 
   const onClickOver = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     if (e.target === e.currentTarget) {
-      onClose();
+      onClick();
     }
   };
 
-  const onClose =  () => {
+  const onClick = () => {
     setIsClosing(true);
-    setTimeout(() => {
-      setIsOpen(false);
-    }, 300);
+    setTimeout(onClose, 300);
   };
 
   return createPortal(
@@ -33,7 +31,7 @@ const Modal = ({ setIsOpen, children }: IProps) => {
       onClick={onClickOver}
     >
       <div className={`${s.modal} ${isClosing ? s.modal_closing : ''}`}>
-        <Button className={s.btn} onClick={onClose}>
+        <Button className={s.btn} onClick={onClick}>
           <CloseIcon />
         </Button>
         {children}
