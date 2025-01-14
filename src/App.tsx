@@ -5,6 +5,7 @@ import HomePage from './pages/HomePage/HomePage';
 import ToursPage from './pages/ToursPage/ToursPage';
 import LoginModal from './components/LoginModal/LoginModal';
 import SignUpModal from './components/SignUpModal/SignUpModal';
+import TourModal from './components/TourModal/TourModal';
 
 function App() {
   const [isDark, setIsDark] = useState(false);
@@ -18,7 +19,9 @@ function App() {
           <Route path="signup" element={<SignUpModal />} />
         </Route>
 
-        <Route path="/tours" element={<ToursPage />} />
+        <Route path="tours" element={<ToursPage />}>
+          <Route path=":id" element={<TourModal />} />
+        </Route>
 
         {/* <Route path="/bruden/blog" element={<BlogPage />} /> */}
       </Routes>

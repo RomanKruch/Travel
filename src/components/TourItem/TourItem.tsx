@@ -2,25 +2,17 @@ import s from './TourItem.module.css';
 import tourItemType from '../../types/ITourItem';
 import Button from '../Button/Button';
 import LikeIcon from '../../icons/LIkeIcon';
-import Modal from '../Modal/Modal';
-import TourModal from '../TourModal/TourModal';
-import { useState } from 'react';
+import { NavLink } from 'react-router-dom';
 
 interface IProps {
   item: tourItemType;
 }
 
 const TourItem = ({ item }: IProps) => {
-  const { description, photo, price, title } = item;
-
-  const [isOpen, setIsOpen] = useState(false);
+  const { description, photo, price, title, id } = item;
 
   const shortDescription =
     description.length > 75 ? description.slice(0, 75) + '...' : description;
-
-  const onClickModal = () => {
-    setIsOpen(true);
-  };
 
   return (
     <>
@@ -36,15 +28,11 @@ const TourItem = ({ item }: IProps) => {
           <Button className={s.btn}>
             <LikeIcon isFilled={false} />
           </Button>
-          <Button onClick={onClickModal}>...</Button>
+          <NavLink to={'/tours/' + id}>
+            <Button>...</Button>
+          </NavLink>
         </div>
       </li>
-
-      {isOpen && (
-        <Modal setIsOpen={setIsOpen}>
-          <TourModal tour={item} />
-        </Modal>
-      )}
     </>
   );
 };
