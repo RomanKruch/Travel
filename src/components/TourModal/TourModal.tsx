@@ -1,5 +1,5 @@
 import s from './TourModal.module.css';
-import ITourItem from '../../types/ITourItem';
+// import ITourItem from '../../types/ITourItem';
 import {
   Map,
   AdvancedMarker,

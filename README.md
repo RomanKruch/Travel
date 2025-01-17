@@ -1,5 +1,9 @@
 # React + TypeScript + Vite
 
+TODO: 
+1.adding REDUX
+2.updating header for user 
+3. adding user page
 
 ### Основний функціонал
 

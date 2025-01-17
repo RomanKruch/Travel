@@ -3,6 +3,8 @@ import tourItemType from '../../types/ITourItem';
 import Button from '../Button/Button';
 import LikeIcon from '../../icons/LIkeIcon';
 import { NavLink } from 'react-router-dom';
+import { useAppDispatch, useAppSelector } from '../../redux/hooks';
+import { onAddToLike, onDeleteFromLike } from '../../redux/user/userOperations';
 
 interface IProps {
   item: tourItemType;
@@ -11,8 +13,21 @@ interface IProps {
 const TourItem = ({ item }: IProps) => {
   const { description, photo, price, title, id } = item;
 
-  const shortDescription =
-    description.length > 75 ? description.slice(0, 75) + '...' : description;
+  const shortDescription = description.length > 75 ? description.slice(0, 75) + '...' : description;
+
+  const isInLiked = useAppSelector(state =>
+    state.user.likedTours.some(tour => tour.id === item.id),
+  );
+  // const isLogged = useAppSelector(s => s.user.isLogged);
+  const dispatch = useAppDispatch();
+
+  const onLikeBtn = () => {
+    if (isInLiked) {
+      dispatch(onDeleteFromLike(item.id));
+    } else {
+      dispatch(onAddToLike(item.id));
+    }
+  };
 
   return (
     <>
@@ -25,8 +40,8 @@ const TourItem = ({ item }: IProps) => {
         </div>
 
         <div className={s.btn_wrap}>
-          <Button className={s.btn}>
-            <LikeIcon isFilled={false} />
+          <Button onClick={onLikeBtn} className={s.btn}>
+            <LikeIcon isFilled={isInLiked} />
           </Button>
           <NavLink to={'/tours/' + id}>
             <Button>...</Button>

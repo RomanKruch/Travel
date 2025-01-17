@@ -2,24 +2,22 @@ import s from './SignUpModal.module.css';
 import { useState } from 'react';
 import Button from '../Button/Button';
 import AdvancedInput from '../AdvancedInput/AdvancedInput';
-import {
-  validateEmail,
-  validatePassword,
-  validateUsername,
-} from '../../helpers/validation';
+import { validateEmail, validatePassword, validateUsername } from '../../helpers/validation';
 import Modal from '../Modal/Modal';
 import { NavLink, useNavigate } from 'react-router-dom';
+import { useAppDispatch } from '../../redux/hooks';
+import { onSignUp } from '../../redux/user/userOperations';
 
-type TFormFields = 'username' | 'email' | 'password';
+type TFormFields = 'name' | 'email' | 'password';
 
 interface IFormValue {
-  username: string;
+  name: string;
   email: string;
   password: string;
 }
 
 const initialFormValue: IFormValue = {
-  username: '',
+  name: '',
   email: '',
   password: '',
 };
@@ -32,6 +30,8 @@ const SignUpModal = () => {
 
   const navigate = useNavigate();
 
+  const dispatch = useAppDispatch();
+
   const onChange = (field: TFormFields) => {
     return (value: string) =>
       setFormValue(s => {
@@ -41,16 +41,16 @@ const SignUpModal = () => {
   };
 
   const onSubmit = () => {
-    const usernameErr = validateUsername(formValue.username);
+    const nameErr = validateUsername(formValue.name);
     const emailErr = validateEmail(formValue.email);
     const passwordErr = validatePassword(formValue.password);
 
-    setUsernameError(usernameErr);
+    setUsernameError(nameErr);
     setEmailError(emailErr);
     setPasswordError(passwordErr);
 
-    if (!usernameErr && !emailErr && !passwordErr) {
-      console.log('SUBMIT.....');
+    if (!nameErr && !emailErr && !passwordErr) {
+      dispatch(onSignUp(formValue))
     }
   };
 
@@ -66,8 +66,8 @@ const SignUpModal = () => {
         <form onSubmit={e => e.preventDefault()} className={s.form}>
           <AdvancedInput
             placeholder="Username"
-            value={formValue.username}
-            setValue={onChange('username')}
+            value={formValue.name}
+            setValue={onChange('name')}
             error={usernameError}
             className={s.inp}
           />

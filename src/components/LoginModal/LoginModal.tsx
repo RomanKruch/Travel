@@ -6,6 +6,8 @@ import { validateEmail, validatePassword } from '../../helpers/validation';
 import Modal from '../Modal/Modal';
 import { useNavigate } from 'react-router-dom';
 import { NavLink } from 'react-router-dom';
+import { useAppDispatch } from '../../redux/hooks';
+import { onLogin } from '../../redux/user/userOperations';
 
 type TFormFields = 'email' | 'password';
 
@@ -26,6 +28,10 @@ const LoginModal = () => {
 
   const navigate = useNavigate();
 
+  const dispatch = useAppDispatch();
+  // const isLogging = useAppSelector(s => s.user.isLogging);
+  // console.log(isLogging);
+
   const onChange = (field: TFormFields) => {
     return (value: string) =>
       setFormValue(s => {
@@ -42,7 +48,7 @@ const LoginModal = () => {
     setPasswordError(passwordErr);
 
     if (!emailErr && !passwordErr) {
-      console.log('SUBMIT.....');
+      dispatch(onLogin(formValue));
     }
   };
 
