@@ -97,7 +97,7 @@ export const onRefresh = createAsyncThunk<IRefresh, void, { state: IState; rejec
       //example
       const res = {
         userInfo: {
-          name: 'user',
+          name: 'Roman',
           email: 'user@ex.com',
         },
         token: persistToken,

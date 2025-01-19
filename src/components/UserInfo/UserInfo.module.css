@@ -1,0 +1,25 @@
+.link {
+    height: 30px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    color: var(--text_color);
+    transition: all 0.3s;
+}
+
+.link:hover {
+    color: var(--hover)
+}
+
+.icon {
+    stroke: var(--text_color);
+    transition: all 0.3s;
+}
+
+.link:hover .icon {
+    stroke: var(--hover)
+}
+
+.text {
+    font-size: 20px;
+}

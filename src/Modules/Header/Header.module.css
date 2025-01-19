@@ -19,3 +19,9 @@
     height: 100%;
     padding: 3px;
 }
+
+.wrap {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}

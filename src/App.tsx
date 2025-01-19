@@ -8,6 +8,7 @@ import SignUpModal from './components/SignUpModal/SignUpModal';
 import TourModal from './components/TourModal/TourModal';
 import { onRefresh } from './redux/user/userOperations';
 import { useAppDispatch } from './redux/hooks';
+import UserPage from './pages/UserPage/UserPage';
 
 function App() {
   const [isDark, setIsDark] = useState(false);
@@ -29,6 +30,8 @@ function App() {
         <Route path="tours" element={<ToursPage />}>
           <Route path=":id" element={<TourModal />} />
         </Route>
+
+        <Route path="user" element={<UserPage />} />
 
         {/* <Route path="/bruden/blog" element={<BlogPage />} /> */}
       </Routes>

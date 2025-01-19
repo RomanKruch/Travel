@@ -3,6 +3,9 @@ import Logo from '../../icons/Logo';
 import Navigation from '../../components/Navigation/Navigation';
 import ThemeToggle from '../../components/ThemeToggle/ThemeToggle';
 import { NavLink } from 'react-router-dom';
+import UserInfo from '../../components/UserInfo/UserInfo';
+import Button from '../../components/Button/Button';
+import { useAppSelector } from '../../redux/hooks';
 
 interface IProps {
   isToggled: boolean;
@@ -10,6 +13,8 @@ interface IProps {
 }
 
 const Header = ({ isToggled, setIsToggled }: IProps) => {
+  const isLogged = useAppSelector(s => s.user.isLogged);
+
   return (
     <header className={s.header}>
       <NavLink to="/" className={s.logo}>
@@ -18,7 +23,17 @@ const Header = ({ isToggled, setIsToggled }: IProps) => {
 
       <Navigation />
 
-      <ThemeToggle isToggled={isToggled} setIsToggled={setIsToggled} />
+      <div className={s.wrap}>
+        <ThemeToggle isToggled={isToggled} setIsToggled={setIsToggled} />
+
+        {isLogged ? (
+          <UserInfo />
+        ) : (
+          <NavLink to="/login">
+            <Button>Log in</Button>
+          </NavLink>
+        )}
+      </div>
     </header>
   );
 };
