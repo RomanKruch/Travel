@@ -1,37 +1,25 @@
 import s from './ThemeToggle.module.css';
 import SunIcon from '../../icons/SunIcon';
 import MoonIcon from '../../icons/MoonIcon';
+import { useAppDispatch, useAppSelector } from '../../redux/hooks';
+import { changeTheme } from '../../redux/theme/themeSlice';
 
-interface IProps {
-  isToggled: boolean;
-  setIsToggled: React.Dispatch<React.SetStateAction<boolean>>;
-}
-
-const ThemeToggle = ({ isToggled, setIsToggled }: IProps) => {
-  const body = document.querySelector('body')!;
+const ThemeToggle = () => {
+  const isDark = useAppSelector(s => s.theme.isDark);
+  const dispatch = useAppDispatch();
 
   const getTheme = (state: boolean) => {
     return state ? `${s.toggler} ${s.toggler_toggled}` : s.toggler;
   };
 
   const onClick = () => {
-    setIsToggled(s => {
-      if (s) {
-        body.classList.remove('dark');
-      } else {
-        body.classList.add('dark');
-      }
-
-      return !s;
-    });
+    dispatch(changeTheme());
   };
 
   return (
     <>
-      <div className={getTheme(isToggled)} onClick={onClick}>
-        <div className={s.toggler_mark}>
-          {isToggled ? <MoonIcon /> : <SunIcon />}
-        </div>
+      <div className={getTheme(isDark)} onClick={onClick}>
+        <div className={s.toggler_mark}>{isDark ? <MoonIcon /> : <SunIcon />}</div>
       </div>
     </>
   );

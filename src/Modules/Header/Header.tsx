@@ -7,12 +7,8 @@ import UserInfo from '../../components/UserInfo/UserInfo';
 import Button from '../../components/Button/Button';
 import { useAppSelector } from '../../redux/hooks';
 
-interface IProps {
-  isToggled: boolean;
-  setIsToggled: React.Dispatch<React.SetStateAction<boolean>>;
-}
 
-const Header = ({ isToggled, setIsToggled }: IProps) => {
+const Header = () => {
   const isLogged = useAppSelector(s => s.user.isLogged);
 
   return (
@@ -24,7 +20,7 @@ const Header = ({ isToggled, setIsToggled }: IProps) => {
       <Navigation />
 
       <div className={s.wrap}>
-        <ThemeToggle isToggled={isToggled} setIsToggled={setIsToggled} />
+        <ThemeToggle />
 
         {isLogged ? (
           <UserInfo />

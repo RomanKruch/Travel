@@ -1,6 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 import userReducer from './user/userSlice';
-//import tagsReducer from './tags/tagsSlice';
+import themeReducer from './theme/themeSlice';
 import {
   persistStore,
   persistReducer,
@@ -12,7 +12,8 @@ import {
   REGISTER,
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
-import IUserState  from '../types/IUserState';
+import IUserState from '../types/IUserState';
+import { IThemeState } from './theme/themeSlice';
 
 const userPersistConfig = {
   key: 'user',
@@ -20,9 +21,15 @@ const userPersistConfig = {
   whitelist: ['token'],
 };
 
+const themePersistConfig = {
+  key: 'theme',
+  storage,
+};
+
 export const store = configureStore({
   reducer: {
     user: persistReducer<IUserState>(userPersistConfig, userReducer),
+    theme: persistReducer<IThemeState>(themePersistConfig, themeReducer),
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
@@ -34,6 +41,6 @@ export const store = configureStore({
 });
 
 export type IState = ReturnType<typeof store.getState>;
-export type AppDispatch = typeof store.dispatch
+export type AppDispatch = typeof store.dispatch;
 
 export const persistor = persistStore(store);

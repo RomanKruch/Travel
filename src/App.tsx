@@ -7,22 +7,32 @@ import LoginModal from './components/LoginModal/LoginModal';
 import SignUpModal from './components/SignUpModal/SignUpModal';
 import TourModal from './components/TourModal/TourModal';
 import { onRefresh } from './redux/user/userOperations';
-import { useAppDispatch } from './redux/hooks';
+import { useAppDispatch, useAppSelector } from './redux/hooks';
 import UserPage from './pages/UserPage/UserPage';
 
+const body = document.querySelector('body')!;
+
 function App() {
-  const [isDark, setIsDark] = useState(false);
   const dispatch = useAppDispatch();
+  const isDark = useAppSelector(s => s.theme.isDark);
 
   useEffect(() => {
     dispatch(onRefresh());
   }, []);
+
+  useEffect(() => {
+    if (!isDark) {
+      body.classList.remove('dark');
+    } else {
+      body.classList.add('dark');
+    }
+  }, [isDark]);
   return (
     <>
-      <Header isToggled={isDark} setIsToggled={setIsDark} />
+      <Header />
 
       <Routes>
-        <Route path="/" element={<HomePage isDark={isDark} />}>
+        <Route path="/" element={<HomePage />}>
           <Route path="login" element={<LoginModal />} />
           <Route path="signup" element={<SignUpModal />} />
         </Route>
