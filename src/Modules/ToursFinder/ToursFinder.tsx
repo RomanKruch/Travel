@@ -2,10 +2,11 @@ import s from './ToursFinder.module.css';
 import tours from '../../data/tours.json';
 import ITourItem from '../../types/ITourItem';
 import TourItem from '../../components/TourItem/TourItem';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Input from '../../components/Input/Input';
 import RangeInput from '../../components/RangeInput/RangeInput';
 import Button from '../../components/Button/Button';
+import { useSearchParams } from 'react-router-dom';
 
 type TFormFields = 'title' | 'location' | 'price';
 
@@ -25,6 +26,20 @@ const ToursFinder = () => {
   const [filteredTours, setFilteredTours] = useState<ITourItem[]>(tours);
   const [formValue, setFormValue] = useState(initFormValue);
 
+  const [query] = useSearchParams();
+
+  useEffect(() => {
+    const des = query.get('des');
+    const loc = query.get('loc');
+
+    if (des) {
+      onChange('title')(des);
+    }
+    if (loc) {
+      onChange('location')(loc);
+    }
+  }, []);
+
   const onChange = (field: TFormFields) => {
     return (value: string | number) =>
       setFormValue(s => {
@@ -33,22 +48,11 @@ const ToursFinder = () => {
       });
   };
 
-  // const filter = () => {
-  //   setFilteredTours(() => {
-  //     const filtered = tours.filter(tour =>
-  //       tour.title.toLowerCase().includes(value.toLowerCase()),
-  //     );
-  //     return filtered;
-  //   });
-  // };
-
   const onSubmit = () => {
     const filtered = tours.filter(
       tour =>
         tour.title.toLowerCase().includes(formValue.title.toLowerCase()) &&
-        tour.location
-          .toLowerCase()
-          .includes(formValue.location.toLowerCase()) &&
+        tour.location.toLowerCase().includes(formValue.location.toLowerCase()) &&
         tour.price <= formValue.price,
     );
 
@@ -84,16 +88,8 @@ const ToursFinder = () => {
 
           <label className={s.label}>
             Filter by price:
-            <Input
-              value={formValue.price}
-              setValue={onChange('price')}
-              number={true}
-            />
-            <RangeInput
-              value={formValue.price}
-              setValue={onChange('price')}
-              maxValue={2500}
-            />
+            <Input value={formValue.price} setValue={onChange('price')} number={true} />
+            <RangeInput value={formValue.price} setValue={onChange('price')} maxValue={2500} />
           </label>
 
           <div className={s.btn_wrap}>

@@ -3,7 +3,7 @@
 
 :root {
   --background_color: #ECECE2;
-  --primary_color: #8BC9D4;
+  --primary_color: #6ca29d;
   --btn_color: #FF6F61;
   --text_color: #262C38;
   --hover: #fd4c3c;
@@ -32,7 +32,7 @@ main {
    font-family: 'Open Sans', sans-serif;
    color: var(--text_color);
    background-color: var(--background_color);
-
+  min-height: 100vh;
    
 }
 

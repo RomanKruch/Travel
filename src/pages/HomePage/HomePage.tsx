@@ -5,14 +5,14 @@ import NewsSubscription from '../../Modules/NewsSubscription/NewsSubscription';
 import ShareYourTour from '../../Modules/ShareYourTour/ShareYourTour';
 import { Outlet } from 'react-router-dom';
 import data from '../../data/tours.json';
-import { useAppSelector } from '../../redux/hooks';
 
 const HomePage = () => {
-  const isDark = useAppSelector(s => s.theme.isDark);
+ 
+  
   return (
     <>
       <main>
-        <Hero isDark={isDark} />
+        <Hero />
         <ToursSection toursList={data} />
         <NewsSubscription />
         <ShareYourTour />
