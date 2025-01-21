@@ -9,6 +9,7 @@ import TourModal from './components/TourModal/TourModal';
 import { onRefresh } from './redux/user/userOperations';
 import { useAppDispatch, useAppSelector } from './redux/hooks';
 import UserPage from './pages/UserPage/UserPage';
+import Footer from './Modules/Footer/Footer';
 
 const body = document.querySelector('body')!;
 
@@ -45,6 +46,8 @@ function App() {
 
         {/* <Route path="/bruden/blog" element={<BlogPage />} /> */}
       </Routes>
+
+      <Footer />
     </>
   );
 }

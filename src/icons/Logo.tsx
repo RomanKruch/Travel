@@ -1,4 +1,8 @@
-const Logo = () => {
+interface IProps {
+  className?: string;
+}
+
+const Logo = ({ className = '' }: IProps) => {
   return (
     <svg
       height="100%"
@@ -9,6 +13,7 @@ const Logo = () => {
       xmlnsXlink="http://www.w3.org/1999/xlink"
       viewBox="0 0 512 512"
       xmlSpace="preserve"
+      className={className}
     >
       <g>
         <path
