@@ -2,7 +2,7 @@ import s from './TourItem.module.css';
 import tourItemType from '../../types/ITourItem';
 import Button from '../Button/Button';
 import LikeIcon from '../../icons/LIkeIcon';
-import { NavLink } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { onAddToLike, onDeleteFromLike } from '../../redux/user/userOperations';
 
@@ -20,6 +20,9 @@ const TourItem = ({ item }: IProps) => {
   );
   // const isLogged = useAppSelector(s => s.user.isLogged);
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+  const routeLocation = useLocation();
+  const path = routeLocation.pathname;
 
   const onLikeBtn = () => {
     if (isInLiked) {
@@ -27,6 +30,12 @@ const TourItem = ({ item }: IProps) => {
     } else {
       dispatch(onAddToLike(item.id));
     }
+  };
+
+  const onOpenModal = () => {
+    const fixPath = path === '/' ? path : path + '/';
+
+    navigate(fixPath + id, { state: { from: path } });
   };
 
   return (
@@ -43,9 +52,7 @@ const TourItem = ({ item }: IProps) => {
           <Button onClick={onLikeBtn} className={s.btn}>
             <LikeIcon isFilled={isInLiked} />
           </Button>
-          <NavLink to={'/tours/' + id}>
-            <Button>...</Button>
-          </NavLink>
+          <Button onClick={onOpenModal}>...</Button>
         </div>
       </li>
     </>

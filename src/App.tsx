@@ -36,6 +36,7 @@ function App() {
         <Route path="/" element={<HomePage />}>
           <Route path="login" element={<LoginModal />} />
           <Route path="signup" element={<SignUpModal />} />
+          <Route path=":id" element={<TourModal />} />
         </Route>
 
         <Route path="tours" element={<ToursPage />}>

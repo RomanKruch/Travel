@@ -2,7 +2,7 @@ import s from './TourModal.module.css';
 // import ITourItem from '../../types/ITourItem';
 import { Map, AdvancedMarker, Pin, ColorScheme } from '@vis.gl/react-google-maps';
 import Modal from '../Modal/Modal';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams, useLocation } from 'react-router-dom';
 
 import data from '../../data/tours.json';
 import { useAppSelector } from '../../redux/hooks';
@@ -13,13 +13,15 @@ const TourModal = () => {
   const { description, location, photo, price, title, cords } = tour;
 
   const navigate = useNavigate();
+  const routeLocation = useLocation();
+  const path = routeLocation.state?.from || '/';
 
   const isDark = useAppSelector(s => s.theme.isDark);
 
   const theme = isDark ? ColorScheme.DARK : ColorScheme.LIGHT;
 
   const onClose = () => {
-    navigate('/tours');
+    navigate(path);
   };
 
   return (
