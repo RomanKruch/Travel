@@ -33,7 +33,7 @@ function App() {
       <Header />
 
       <Routes>
-        <Route path="/" element={<HomePage />}>
+        {/* <Route path="/" element={<HomePage />}>
           <Route path="login" element={<LoginModal />} />
           <Route path="signup" element={<SignUpModal />} />
           <Route path=":id" element={<TourModal />} />
@@ -43,12 +43,12 @@ function App() {
           <Route path=":id" element={<TourModal />} />
         </Route>
 
-        <Route path="user" element={<UserPage />} />
+        <Route path="user" element={<UserPage />} /> */}
 
         {/* <Route path="/bruden/blog" element={<BlogPage />} /> */}
       </Routes>
 
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 }

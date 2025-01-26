@@ -9,6 +9,9 @@
   --hover: #fd4c3c;
   --input_hover: #06b6d5;
   --error_color: #ff2c2c;
+
+  --breakpoint-tablet: 768px; 
+  --breakpoint-laptop: 1024px; 
 }
 
 .dark {
@@ -67,7 +70,12 @@ input:focus {
 
 button {
   font-family: 'Poppins', sans-serif;
+  background: transparent;
   cursor: pointer;
+}
+
+button:focus {
+  outline: none;
 }
 
 section:not(:last-child) {

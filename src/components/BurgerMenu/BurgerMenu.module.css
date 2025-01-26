@@ -1,0 +1,30 @@
+.menu {
+    width: 100vw;
+    height: calc(100vh - 50px);
+    position: fixed;
+    top: 50px;
+    left: 100vw;
+    padding: 50px 20px 0;
+
+    background: var(--primary_color);
+    transition: transform 0.3s ease-in-out;
+}
+
+.open {
+    transform: translateX(-100vw);
+}
+
+.wrap {
+    width: calc(100vw - 40px);
+    display: flex;
+    justify-content: space-between;
+    position: absolute;
+    bottom: 50px;
+    left: 20px;
+}
+
+@media (min-width: 768px) {
+    .menu {
+        display: none;
+    }
+}

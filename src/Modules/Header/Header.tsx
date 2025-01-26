@@ -3,13 +3,17 @@ import Logo from '../../icons/Logo';
 import Navigation from '../../components/Navigation/Navigation';
 import ThemeToggle from '../../components/ThemeToggle/ThemeToggle';
 import { NavLink } from 'react-router-dom';
-import UserInfo from '../../components/UserInfo/UserInfo';
-import Button from '../../components/Button/Button';
-import { useAppSelector } from '../../redux/hooks';
-
+import BurgerBtn from '../../components/BurgerBtn/BurgerBtn';
+import { useState } from 'react';
+import BurgerMenu from '../../components/BurgerMenu/BurgerMenu';
+import UserBar from '../../components/UserBar/UserBar';
 
 const Header = () => {
-  const isLogged = useAppSelector(s => s.user.isLogged);
+  const [isBurgerMenuOpen, setIsBurgerMenuOpen] = useState(false);
+
+  const toggleBurgerMenu = () => {
+    setIsBurgerMenuOpen(s => !s);
+  };
 
   return (
     <header className={s.header}>
@@ -22,14 +26,11 @@ const Header = () => {
       <div className={s.wrap}>
         <ThemeToggle />
 
-        {isLogged ? (
-          <UserInfo />
-        ) : (
-          <NavLink to="/login">
-            <Button>Log in</Button>
-          </NavLink>
-        )}
+        <UserBar />
       </div>
+
+      <BurgerBtn isOpen={isBurgerMenuOpen} toggleMenu={toggleBurgerMenu} />
+      <BurgerMenu isOpen={isBurgerMenuOpen} onClose={toggleBurgerMenu}/>
     </header>
   );
 };
