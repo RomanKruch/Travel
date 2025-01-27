@@ -4,6 +4,7 @@
 :root {
   --background_color: #ECECE2;
   --primary_color: #6ca29d;
+  --primary-color-rgb: 108, 162, 157;
   --btn_color: #FF6F61;
   --text_color: #262C38;
   --hover: #fd4c3c;
@@ -17,6 +18,7 @@
 .dark {
   --background_color: #464E5B;
   --primary_color: #0D2645;
+  --primary-color-rgb: 13, 38, 69;
   --btn_color: #1B1E2A;
   --text_color: #EAF7FD;
   --hover: #00bbd8;

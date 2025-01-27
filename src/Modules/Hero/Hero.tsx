@@ -46,7 +46,6 @@ const Hero = () => {
 
   return (
     <section className={isDark ? `${s.hero} ${s.hero_dark}` : s.hero}>
-      <div>
         <div className={s.title_wrap}>
           <h1 className={s.title}>
             top budget <br /> destinations
@@ -58,14 +57,13 @@ const Hero = () => {
 
         <div className={s.input_wrap}>
           <Input
-            text="Destinations"
+            text="Destinations..."
             value={formValue.destination}
             setValue={onChange('destination')}
           />
-          <Input text="Location" value={formValue.location} setValue={onChange('location')} />
+          <Input text="Location..." value={formValue.location} setValue={onChange('location')} />
           <Button onClick={onClick}>Find</Button>
         </div>
-      </div>
     </section>
   );
 };

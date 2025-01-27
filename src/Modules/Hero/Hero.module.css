@@ -1,9 +1,9 @@
 .hero {
     height: 100vh;
-    padding-top: 100px;
+    padding-top: 130px;
 
     background-image: url('../../assets/Hero_light.jpg');
-    background-position: top left;
+    background-position: top right;
     background-size: cover;
     background-repeat: no-repeat;
     transition: all 0.3s;
@@ -14,7 +14,7 @@
 }
 
 .title_wrap {
-    margin: 30px 0 50px 12vw;
+    margin: 0 0 50px 10vw;
 }
 
 .title {
@@ -27,13 +27,53 @@
 }
 
 .subtitle {
-    color: #F2FCFF;
+    color: #ffffff;
     font-size: 20px;
 }
 
 .input_wrap {
-    width: 50vw;
-    margin-left: 12vw;
+    width: min(650px, 70vw);
+    margin-left: 10vw;
     display: flex;
-    gap: 50px;
+    gap: 40px;
+}
+
+@media (max-width: 1024px) {
+    .title {
+        font-size: 64px;
+        line-height: 64px;
+    }
+
+    .subtitle {
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 767px) {
+    .title {
+        font-size: 44px;
+        line-height: 44px;
+        word-break: break-all;
+    }
+
+    .subtitle {
+        font-size: 16px;
+    }
+
+    .title_wrap {
+        margin: 0 5vw 50px ;
+    }
+
+    .input_wrap {
+        margin-left: 5vw;
+    }
+}
+
+@media (max-width: 550px)  {
+    .input_wrap {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+        margin: 0 auto;
+    }
 }

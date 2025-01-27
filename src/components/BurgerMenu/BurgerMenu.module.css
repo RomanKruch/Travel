@@ -6,7 +6,7 @@
     left: 100vw;
     padding: 50px 20px 0;
 
-    background: var(--primary_color);
+    background-color: rgba(var(--primary-color-rgb), 0.8);
     transition: transform 0.3s ease-in-out;
 }
 
