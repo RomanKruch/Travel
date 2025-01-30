@@ -3,6 +3,7 @@ import TourItem from '../../components/TourItem/TourItem';
 import ITourItem from '../../types/ITourItem';
 import s from './ToursSection.module.css';
 import Button from '../../components/Button/Button';
+import Title from '../../components/Title/Title';
 
 interface IProps {
   toursList: ITourItem[];
@@ -18,7 +19,7 @@ const ToursSection = ({ toursList }: IProps) => {
   return (
     <section className={s.section}>
       <div className="container">
-        <h2 className={s.title}>Top tours this month!</h2>
+        <Title>Top tours this month!</Title>
 
         <ul className={s.list}>
           {toursList.slice(0, viewToursCount).map(item => (

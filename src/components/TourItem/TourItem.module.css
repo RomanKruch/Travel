@@ -1,6 +1,6 @@
 .item {
-    width: 20vw;
-    height: 33vw;
+    width: 300px;
+    height: 550px;
     border-radius: 20px;
     box-shadow: 1px 1px 15px #252525 ;
     overflow: hidden;
@@ -53,5 +53,45 @@
     padding: 5px;
     width: 45px;
     border-radius: 50%;
+}
 
+@media (max-width: 1024px) {
+    .item {
+        width: 270px;
+        height: 450px;
+    }
+
+    .title {
+        font-size: 24px;   
+    }
+    
+    .description {
+        font-size: 18px;
+    }
+    
+    .price {
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 767px) {
+    .item {
+        height: 400px;
+    }
+
+    .btn {
+        width: 30px;
+    }
+
+    .title {
+        font-size: 22px;   
+    }
+    
+    .description {
+        font-size: 16px;
+    }
+    
+    .price {
+        font-size: 18px;
+    }
 }

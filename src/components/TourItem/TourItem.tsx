@@ -13,7 +13,7 @@ interface IProps {
 const TourItem = ({ item }: IProps) => {
   const { description, photo, price, title, id } = item;
 
-  const shortDescription = description.length > 75 ? description.slice(0, 75) + '...' : description;
+  const shortDescription = description.length > 70 ? description.slice(0, 70) + '...' : description;
 
   const isInLiked = useAppSelector(state =>
     state.user.likedTours.some(tour => tour.id === item.id),

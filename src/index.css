@@ -87,3 +87,9 @@ section:not(:last-child) {
 .container {
   padding: 0 25px;
 }
+
+@media (max-width: 767px) {
+  .container {
+    padding: 0 15px;
+  }
+}

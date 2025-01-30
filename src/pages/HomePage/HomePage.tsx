@@ -11,7 +11,7 @@ const HomePage = () => {
     <>
       <main>
         <Hero />
-        {/* <ToursSection toursList={data} /> */}
+        <ToursSection toursList={data} />
         {/* <NewsSubscription /> */}
         {/* <MapSection /> */}
         {/* <ShareYourTour /> */}
