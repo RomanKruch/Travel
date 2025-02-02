@@ -1,5 +1,4 @@
 .footer {
-    height: 30vh;
     background: var(--primary_color);
     padding: 30px;
 }
@@ -32,4 +31,14 @@
 
 .link:hover {
     color: var(--hover)
+}
+
+@media (max-width: 767px) {
+    .logo_wrap {
+        font-size: 28px;
+    }
+
+    .copyright {
+        font-size: 16px;
+    }
 }

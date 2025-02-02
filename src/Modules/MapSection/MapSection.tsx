@@ -3,6 +3,7 @@ import data from '../../data/tours.json';
 import { Map, AdvancedMarker, Pin, ColorScheme } from '@vis.gl/react-google-maps';
 import { useAppSelector } from '../../redux/hooks';
 import { useNavigate } from 'react-router-dom';
+import Title from '../../components/Title/Title';
 
 const MapSection = () => {
   const navigate = useNavigate();
@@ -16,7 +17,7 @@ const MapSection = () => {
   };
   return (
     <section>
-      <h2 className={s.title}>All tours on MAP</h2>
+      <Title>All tours on MAP</Title>
 
       <Map
         className={s.map}

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import Header from './Modules/Header/Header';
 import HomePage from './pages/HomePage/HomePage';
@@ -48,7 +48,7 @@ function App() {
         {/* <Route path="/bruden/blog" element={<BlogPage />} /> */}
       </Routes>
 
-      {/* <Footer /> */}
+      <Footer />
     </>
   );
 }

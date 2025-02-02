@@ -2,6 +2,7 @@ import Input from '../../components/Input/Input';
 import Button from '../../components/Button/Button';
 import s from './NewsSubscription.module.css';
 import { useState } from 'react';
+import Title from '../../components/Title/Title';
 
 const NewsSubscription = () => {
   const [inpValue, setInpValue] = useState('');
@@ -13,7 +14,7 @@ const NewsSubscription = () => {
   return (
     <section>
       <div className="container">
-        <h2 className={s.title}>Subscription to the news</h2>
+        <Title>Subscription to the news</Title>
         <form onSubmit={e => e.preventDefault()} className={s.form}>
           <Input
             text="Your email..."
