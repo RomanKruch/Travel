@@ -1,5 +1,5 @@
 import s from './MapSection.module.css';
-import data from '../../data/tours.json';
+import data from '../../data/tours';
 import { Map, AdvancedMarker, Pin, ColorScheme } from '@vis.gl/react-google-maps';
 import { useAppSelector } from '../../redux/hooks';
 import { useNavigate } from 'react-router-dom';

@@ -44,8 +44,6 @@ function App() {
         </Route>
 
         <Route path="user" element={<UserPage />} />
-
-        {/* <Route path="/bruden/blog" element={<BlogPage />} /> */}
       </Routes>
 
       <Footer />

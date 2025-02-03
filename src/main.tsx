@@ -12,7 +12,7 @@ createRoot(document.getElementById('root')!).render(
   <Provider store={store}>
     <PersistGate loading={null} persistor={persistor}>
       <APIProvider apiKey={import.meta.env.VITE_MAP_API_KEY}>
-        <BrowserRouter>
+        <BrowserRouter basename='/Travel'>
           <App />
         </BrowserRouter>
       </APIProvider>

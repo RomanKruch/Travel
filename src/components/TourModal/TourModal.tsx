@@ -1,10 +1,9 @@
 import s from './TourModal.module.css';
-// import ITourItem from '../../types/ITourItem';
 import { Map, AdvancedMarker, Pin, ColorScheme } from '@vis.gl/react-google-maps';
 import Modal from '../Modal/Modal';
 import { useNavigate, useParams, useLocation } from 'react-router-dom';
 
-import data from '../../data/tours.json';
+import data from '../../data/tours';
 import { useAppSelector } from '../../redux/hooks';
 
 const TourModal = () => {

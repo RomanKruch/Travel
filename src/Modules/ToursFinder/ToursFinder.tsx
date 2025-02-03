@@ -1,5 +1,5 @@
 import s from './ToursFinder.module.css';
-import tours from '../../data/tours.json';
+import tours from '../../data/tours';
 import ITourItem from '../../types/ITourItem';
 import TourItem from '../../components/TourItem/TourItem';
 import { useEffect, useState } from 'react';

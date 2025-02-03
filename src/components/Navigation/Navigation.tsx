@@ -28,9 +28,6 @@ const Navigation = ({ burger = false, onCloseMenu = () => {} }: IProps) => {
       <NavLink to="/tours" className={activeClass} end onClick={onClick}>
         Tours
       </NavLink>
-      <NavLink to="/about" className={activeClass} end onClick={onClick}>
-        About
-      </NavLink>
     </nav>
   );
 };

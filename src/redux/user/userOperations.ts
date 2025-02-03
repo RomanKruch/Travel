@@ -4,7 +4,7 @@ import { IState } from '../store';
 import ITourItem from '../../types/ITourItem';
 import { ISign, IUserInfoSing, ILogin, IUserInfo, IRefresh } from './types';
 
-import toursBase from '../../data/tours.json';
+import toursBase from '../../data/tours';
 
 // const token = {
 //   set(token: string) {
