@@ -51,8 +51,6 @@
 
 .btn {
     padding: 5px;
-    width: 45px;
-    border-radius: 50%;
 }
 
 @media (max-width: 1024px) {
@@ -75,14 +73,6 @@
 }
 
 @media (max-width: 767px) {
-    .item {
-        height: 400px;
-    }
-
-    .btn {
-        width: 30px;
-    }
-
     .title {
         font-size: 22px;   
     }

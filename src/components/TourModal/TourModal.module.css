@@ -3,6 +3,8 @@
     height: 550px;
     display: flex;
     align-items: center;
+    overflow-y: scroll;
+    padding-bottom: 35px;
 }
 
 .img {
