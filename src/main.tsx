@@ -7,12 +7,13 @@ import { PersistGate } from 'redux-persist/integration/react';
 import './index.css';
 
 import App from './App.tsx';
+import { API_KEY } from './config/googleMapsAPI.ts';
 
 createRoot(document.getElementById('root')!).render(
   <Provider store={store}>
     <PersistGate loading={null} persistor={persistor}>
-      <APIProvider apiKey={import.meta.env.VITE_MAP_API_KEY}>
-        <BrowserRouter basename='/Travel'>
+      <APIProvider apiKey={API_KEY}>
+        <BrowserRouter basename="/Travel">
           <App />
         </BrowserRouter>
       </APIProvider>
