@@ -50,6 +50,7 @@
 }
 
 .btn {
+    width: 45px;
     padding: 5px;
 }
 
@@ -73,6 +74,10 @@
 }
 
 @media (max-width: 767px) {
+    .btn {
+        width: 35px;
+    }
+
     .title {
         font-size: 22px;   
     }
