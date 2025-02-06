@@ -49,7 +49,9 @@ function App() {
         </Route>
 
         <Route element={<PrivateRoute />}>
-          <Route path="user" element={<UserPage />} />
+          <Route path="user" element={<UserPage />}>
+            <Route path=":id" element={<TourModal />} />
+          </Route>
         </Route>
       </Routes>
 

@@ -18,13 +18,17 @@ const TourItem = ({ item }: IProps) => {
   const isInLiked = useAppSelector(state =>
     state.user.likedTours.some(tour => tour.id === item.id),
   );
-  // const isLogged = useAppSelector(s => s.user.isLogged);
+  const isLogged = useAppSelector(s => s.user.isLogged);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const routeLocation = useLocation();
   const path = routeLocation.pathname;
 
   const onLikeBtn = () => {
+    if (!isLogged) {
+      return navigate('/login');
+    }
+
     if (isInLiked) {
       dispatch(onDeleteFromLike(item.id));
     } else {
