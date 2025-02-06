@@ -10,6 +10,8 @@ import { onRefresh } from './redux/user/userOperations';
 import { useAppDispatch, useAppSelector } from './redux/hooks';
 import UserPage from './pages/UserPage/UserPage';
 import Footer from './Modules/Footer/Footer';
+import PrivateRoute from './Router/PrivateRoute';
+import PublicRoute from './Router/PublicRoute';
 
 const body = document.querySelector('body')!;
 
@@ -34,8 +36,11 @@ function App() {
 
       <Routes>
         <Route path="/" element={<HomePage />}>
-          <Route path="login" element={<LoginModal />} />
-          <Route path="signup" element={<SignUpModal />} />
+          <Route element={<PublicRoute />}>
+            <Route path="login" element={<LoginModal />} />
+            <Route path="signup" element={<SignUpModal />} />
+          </Route>
+
           <Route path=":id" element={<TourModal />} />
         </Route>
 
@@ -43,7 +48,9 @@ function App() {
           <Route path=":id" element={<TourModal />} />
         </Route>
 
-        <Route path="user" element={<UserPage />} />
+        <Route element={<PrivateRoute />}>
+          <Route path="user" element={<UserPage />} />
+        </Route>
       </Routes>
 
       <Footer />
