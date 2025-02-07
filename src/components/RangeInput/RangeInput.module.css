@@ -16,3 +16,12 @@
     top: -6px;
     left: 0;
 }
+
+@media (max-width: 1024px) {
+    .mark {
+        width: 20px;
+        height: 20px;
+
+        top: -8px;
+    }
+}

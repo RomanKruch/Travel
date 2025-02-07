@@ -20,18 +20,11 @@ const RangeInput = ({ value, setValue, maxValue }: IProps) => {
     setWidth(LineRef.getBoundingClientRect().width);
   }, []);
 
-
-
   const onMouseMove = (e: MouseEvent) => {
     const x = e.pageX;
 
-    if (
-      x >= (markStartWidth.current || 0) &&
-      x <= width + (markStartWidth.current || 0)
-    ) {
-      setValue(
-        Math.round((x - (markStartWidth.current || 0)) * (maxValue / width)),
-      );
+    if (x >= (markStartWidth.current || 0) && x <= width + (markStartWidth.current || 0)) {
+      setValue(Math.round((x - (markStartWidth.current || 0)) * (maxValue / width)));
     }
     return;
   };
@@ -46,11 +39,37 @@ const RangeInput = ({ value, setValue, maxValue }: IProps) => {
     window.addEventListener('mouseup', onMouseUp);
   };
 
+  const onTouchMove = (e: TouchEvent) => {
+    const [touch] = e.changedTouches;
+
+    const x = touch.pageX;
+
+    if (x >= (markStartWidth.current || 0) && x <= width + (markStartWidth.current || 0)) {
+      setValue(Math.round((x - (markStartWidth.current || 0)) * (maxValue / width)));
+    }
+    return;
+  };
+
+  const onTouchUp = () => {
+    window.removeEventListener('touchmove', onTouchMove);
+    window.removeEventListener('touchend', onTouchUp);
+  };
+
+  const onTouchDown = () => {
+    window.addEventListener('touchmove', onTouchMove);
+    window.addEventListener('touchend', onTouchUp);
+  };
+
   const left = (value + 5 - (markStartWidth.current || 0)) / (maxValue / width);
 
   return (
     <div className={s.line}>
-      <div className={s.mark} onMouseDown={onMouseDown} style={{ left }}></div>
+      <div
+        className={s.mark}
+        onMouseDown={onMouseDown}
+        onTouchStart={onTouchDown}
+        style={{ left }}
+      ></div>
     </div>
   );
 };
