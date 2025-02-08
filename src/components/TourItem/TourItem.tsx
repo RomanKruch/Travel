@@ -1,10 +1,8 @@
 import s from './TourItem.module.css';
 import tourItemType from '../../types/ITourItem';
 import Button from '../Button/Button';
-import LikeIcon from '../../icons/LIkeIcon';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { useAppDispatch, useAppSelector } from '../../redux/hooks';
-import { onAddToLike, onDeleteFromLike } from '../../redux/user/userOperations';
+
 import LikeBtn from '../LikeBtn/LikeBtn';
 
 interface IProps {
@@ -19,7 +17,6 @@ const TourItem = ({ item }: IProps) => {
   const navigate = useNavigate();
   const routeLocation = useLocation();
   const path = routeLocation.pathname;
-
 
   const onOpenModal = () => {
     const fixPath = path === '/' ? path : path + '/';
