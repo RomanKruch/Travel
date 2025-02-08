@@ -5,6 +5,7 @@ import LikeIcon from '../../icons/LIkeIcon';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { onAddToLike, onDeleteFromLike } from '../../redux/user/userOperations';
+import LikeBtn from '../LikeBtn/LikeBtn';
 
 interface IProps {
   item: tourItemType;
@@ -15,26 +16,10 @@ const TourItem = ({ item }: IProps) => {
 
   const shortDescription = description.length > 70 ? description.slice(0, 70) + '...' : description;
 
-  const isInLiked = useAppSelector(state =>
-    state.user.likedTours.some(tour => tour.id === item.id),
-  );
-  const isLogged = useAppSelector(s => s.user.isLogged);
-  const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const routeLocation = useLocation();
   const path = routeLocation.pathname;
 
-  const onLikeBtn = () => {
-    if (!isLogged) {
-      return navigate('/login');
-    }
-
-    if (isInLiked) {
-      dispatch(onDeleteFromLike(item.id));
-    } else {
-      dispatch(onAddToLike(item.id));
-    }
-  };
 
   const onOpenModal = () => {
     const fixPath = path === '/' ? path : path + '/';
@@ -53,9 +38,8 @@ const TourItem = ({ item }: IProps) => {
         </div>
 
         <div className={s.btn_wrap}>
-          <Button onClick={onLikeBtn} className={s.btn}>
-            <LikeIcon isFilled={isInLiked} />
-          </Button>
+          <LikeBtn id={id} />
+
           <Button onClick={onOpenModal}>...</Button>
         </div>
       </li>
