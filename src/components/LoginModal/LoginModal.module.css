@@ -1,6 +1,6 @@
 .wrap {
-    width: 30vw;
-    /* height: 75vh; */
+    width: 450px;
+    max-width: 100%;
     padding: 40px;
     text-align: center;
 }
@@ -10,11 +10,8 @@
 }
 
 .title {
-    color: var(--text_color);
     font-size: 40px;
     line-height: 50px;
-    /* font-family: 'Poppins', sans-serif; */
-    /* font-family: "Open Sans", sans-serif; */
     margin-bottom: 20px;
 }
 
@@ -32,11 +29,29 @@
 
 .redirect_link {
     font-size: 20px;
-    color: var(--btn_color);
+    color: var(--text_color);
     transition: all 0.3s;
 }
 
 .redirect_link:hover {
     color: var(--hover);
     text-decoration: underline;
+}
+
+@media (max-width: 767px) {
+    .wrap {
+        padding: 25px;
+    }
+
+    .title {
+        font-size: 30px;
+    }
+
+    .redirect {
+        font-size: 16px;
+    }
+
+    .redirect_link {
+        font-size: 18px;
+    }
 }

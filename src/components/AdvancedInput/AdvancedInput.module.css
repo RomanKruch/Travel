@@ -68,3 +68,26 @@
     color: var(--error_color);
     transform: translate(-10px, -27px);
   }
+
+  @media (max-width: 767px) {
+    .label {
+      font-size: 16px;
+      line-height: 20px;
+      top: 10px;
+      left: 15px;
+    }
+
+    .input:focus ~ .label,
+    .input:not(:placeholder-shown) ~ .label {
+      transform: translate(-7px, -20px);
+    }
+
+    .input {
+      height: 42px;
+      font-size: 18px;
+    }
+
+    .error {
+      font-size: 10px;
+    }
+  }
