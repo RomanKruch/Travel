@@ -1,7 +1,7 @@
 import s from './TourModal.module.css';
 import { Map, AdvancedMarker, Pin, ColorScheme } from '@vis.gl/react-google-maps';
 import Modal from '../Modal/Modal';
-import { useNavigate, useParams, useLocation, Navigate } from 'react-router-dom';
+import { useNavigate, useParams, useLocation } from 'react-router-dom';
 import { useAppSelector } from '../../redux/hooks';
 import LikeBtn from '../LikeBtn/LikeBtn';
 import axios from 'axios';

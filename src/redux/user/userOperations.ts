@@ -2,7 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { IState } from '../store';
 import ITourItem from '../../types/ITourItem';
-import { ISign, IUserInfoSing, ILogin, IUserInfo, IRefresh, IDeletedTour } from './types';
+import { ISign, IUserInfoSing, ILogin, IUserInfo, IRefresh } from './types';
 
 const token = {
   set(token: string) {

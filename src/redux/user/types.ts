@@ -37,7 +37,3 @@ export interface IRefresh {
   token: string;
   likedTours: ITourItem[];
 }
-
-export interface IDeletedTour {
-  id: string;
-}
