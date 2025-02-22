@@ -25,7 +25,7 @@ const UserPage = () => {
           <h2 className={s.list_title}>Liked tours:</h2>
           <ul className={s.list}>
             {likedTours.map(item => (
-              <TourItem item={item} />
+              <TourItem item={item} key={item._id} />
             ))}
           </ul>
         </div>

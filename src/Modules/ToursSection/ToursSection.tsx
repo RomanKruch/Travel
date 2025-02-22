@@ -1,31 +1,44 @@
-import TourItem from '../../components/TourItem/TourItem';
 import ITourItem from '../../types/ITourItem';
 import s from './ToursSection.module.css';
 import Button from '../../components/Button/Button';
 import Title from '../../components/Title/Title';
 import { useNavigate } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import ToursList from '../../components/ToursList/ToursList';
+import axios from 'axios';
 
-interface IProps {
-  toursList: ITourItem[];
-}
+const ToursSection = () => {
+  const [tours, setTours] = useState<ITourItem[]>([]);
+  const [loading, setLoading] = useState(true);
 
-const ToursSection = ({ toursList }: IProps) => {
+  useEffect(() => {
+    const fetchTours = async () => {
+      try {
+        setLoading(true);
+        const { data } = await axios.get('/tours?limit=8');
+        setTours(data.tours);
+      } catch (error) {
+        console.error('Error fetching tours:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchTours();
+  }, []);
+
   const navigate = useNavigate();
 
   const onClick = () => {
-    navigate('/tours')
+    navigate('/tours');
   };
 
   return (
-    <section className={s.section}>
+    <section>
       <div className="container">
         <Title>Top tours this month!</Title>
 
-        <ul className={s.list}>
-          {toursList.slice(0, 4).map(item => (
-            <TourItem item={item} key={item.id} />
-          ))}
-        </ul>
+        {loading ? <p>Loading ...</p> : <ToursList tours={tours} />}
 
         <Button onClick={onClick} className={s.btn}>
           See more...

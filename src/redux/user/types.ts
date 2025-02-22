@@ -1,7 +1,7 @@
-import ITourItem from "../../types/ITourItem";
+import ITourItem from '../../types/ITourItem';
 
 export interface ISign {
-  user: {
+  userInfo: {
     name: string;
     email: string;
   };
@@ -9,13 +9,15 @@ export interface ISign {
 }
 
 export interface IUserInfoSing {
-  name: string;
-  email: string;
+  userInfo: {
+    name: string;
+    email: string;
+  };
   password: string;
 }
 
 export interface ILogin {
-  user: {
+  userInfo: {
     name: string;
     email: string;
   };
@@ -34,4 +36,8 @@ export interface IRefresh {
   };
   token: string;
   likedTours: ITourItem[];
+}
+
+export interface IDeletedTour {
+  id: string;
 }

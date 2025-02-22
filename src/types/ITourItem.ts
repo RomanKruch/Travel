@@ -9,7 +9,7 @@ interface ITourItem {
     photo: string;
     location: string;
     price: number;
-    id: string;
+    _id: string;
     cords: ICords
 }
 

@@ -5,6 +5,7 @@
 .wrap {
     display: grid;
     grid-template-columns: min(30vw, 400px) 1fr;
+    row-gap: 20px;
 }
 
 .form {
@@ -22,15 +23,6 @@
 
     font-size: 20px;
     color: var(--text_color);   
-}
-
-.list {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    grid-template-rows: auto;
-    justify-items: center;
-    gap: 40px 20px;
-
 }
 
 .btn_wrap {

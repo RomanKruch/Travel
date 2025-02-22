@@ -1,67 +1,87 @@
 import s from './ToursFinder.module.css';
-import tours from '../../data/tours';
 import ITourItem from '../../types/ITourItem';
-import TourItem from '../../components/TourItem/TourItem';
 import { useEffect, useState } from 'react';
 import Input from '../../components/Input/Input';
 import RangeInput from '../../components/RangeInput/RangeInput';
 import Button from '../../components/Button/Button';
+import Pagination from '../../components/Pagination/Pagination';
 import { useSearchParams } from 'react-router-dom';
+import axios from 'axios';
+import ToursList from '../../components/ToursList/ToursList';
 
 type TFormFields = 'title' | 'location' | 'price';
 
-interface IFormValue {
+interface IParams {
   title: string;
   location: string;
   price: number;
 }
 
-const initFormValue: IFormValue = {
+const initParams: IParams = {
   title: '',
   location: '',
   price: 2500,
 };
 
 const ToursFinder = () => {
-  const [filteredTours, setFilteredTours] = useState<ITourItem[]>(tours);
-  const [formValue, setFormValue] = useState(initFormValue);
+  const [tours, setTours] = useState<ITourItem[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [totalPages, setTotalPages] = useState(1);
+
+  const [params, setParams] = useState(initParams);
+  const [page, setPage] = useState(1);
 
   const [query] = useSearchParams();
 
   useEffect(() => {
     const des = query.get('des');
     const loc = query.get('loc');
+    const localParams = initParams;
 
     if (des) {
+      localParams.title = des;
       onChange('title')(des);
     }
     if (loc) {
+      localParams.location = loc;
       onChange('location')(loc);
     }
+
+    fetchTours(page, localParams);
   }, []);
+
+  useEffect(() => {
+    fetchTours(page, params);
+  }, [page]);
+
+  const fetchTours = async (page = 1, params: IParams) => {
+    try {
+      setLoading(true);
+      const { data } = await axios.get('/tours', { params: { page, ...params } });
+      setTours(data.tours);
+      setTotalPages(data.totalPages);
+    } catch (error) {
+      console.error('Error fetching tours:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const onChange = (field: TFormFields) => {
     return (value: string | number) =>
-      setFormValue(s => {
+      setParams(s => {
         const newState = { ...s, [field]: value };
         return newState;
       });
   };
 
   const onSubmit = () => {
-    const filtered = tours.filter(
-      tour =>
-        tour.title.toLowerCase().includes(formValue.title.toLowerCase()) &&
-        tour.location.toLowerCase().includes(formValue.location.toLowerCase()) &&
-        tour.price <= formValue.price,
-    );
-
-    setFilteredTours(filtered);
+    fetchTours(page, params);
   };
 
   const onReset = () => {
-    setFilteredTours(tours);
-    setFormValue(initFormValue);
+    setParams(initParams);
+    fetchTours(page, initParams);
   };
 
   return (
@@ -70,26 +90,22 @@ const ToursFinder = () => {
         <form onSubmit={e => e.preventDefault()} className={s.form}>
           <label className={s.label}>
             Filter by name:
-            <Input
-              text="Write name of tour..."
-              value={formValue.title}
-              setValue={onChange('title')}
-            />
+            <Input text="Write name of tour..." value={params.title} setValue={onChange('title')} />
           </label>
 
           <label className={s.label}>
             Filter by location:
             <Input
               text="Write location of tour..."
-              value={formValue.location}
+              value={params.location}
               setValue={onChange('location')}
             />
           </label>
 
           <label className={s.label}>
             Filter by price:
-            <Input value={formValue.price} setValue={onChange('price')} number={true} />
-            <RangeInput value={formValue.price} setValue={onChange('price')} maxValue={2500} />
+            <Input value={params.price} setValue={onChange('price')} number={true} />
+            <RangeInput value={params.price} setValue={onChange('price')} maxValue={2500} />
           </label>
 
           <div className={s.btn_wrap}>
@@ -98,11 +114,9 @@ const ToursFinder = () => {
           </div>
         </form>
 
-        <ul className={s.list}>
-          {filteredTours.map(item => (
-            <TourItem item={item} key={item.id} />
-          ))}
-        </ul>
+        {loading ? <p>Loading...</p> : <ToursList tours={tours} />}
+
+        <Pagination page={page} setPage={setPage} totalPages={totalPages} />
       </div>
     </section>
   );

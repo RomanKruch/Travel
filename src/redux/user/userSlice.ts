@@ -4,8 +4,7 @@ import {
   onLogin,
   onLogout,
   onRefresh,
-  onAddToLike,
-  onDeleteFromLike,
+  onLikeTour,
 } from './userOperations';
 import IUserState from '../../types/IUserState';
 
@@ -34,7 +33,7 @@ const userSlice = createSlice({
 
       .addCase(onSignUp.fulfilled, (_, { payload }) => ({
         ...initialState,
-        userInfo: payload.user,
+        userInfo: payload.userInfo,
         token: payload.token,
         isLogged: true,
       }))
@@ -51,7 +50,7 @@ const userSlice = createSlice({
 
       .addCase(onLogin.fulfilled, (_, { payload }) => ({
         ...initialState,
-        userInfo: payload.user,
+        userInfo: payload.userInfo,
         token: payload.token,
         isLogged: true,
         likedTours: payload.likedTours,
@@ -84,15 +83,19 @@ const userSlice = createSlice({
         isLogging: false,
       }))
 
-      .addCase(onAddToLike.fulfilled, (state, { payload }) => ({
-        ...state,
-        likedTours: [...state.likedTours, payload],
-      }))
+      .addCase(onLikeTour.fulfilled, (state, { payload }) => {
+        if (typeof payload === 'string') {
+          return {
+            ...state,
+            likedTours: state.likedTours.filter(item => item._id !== payload),
+          };
+        }
 
-      .addCase(onDeleteFromLike.fulfilled, (state, { payload }) => ({
-        ...state,
-        likedTours: state.likedTours.filter(item => item.id !== payload),
-      }));
+        return {
+          ...state,
+          likedTours: [...state.likedTours, payload],
+        };
+      })
   },
 });
 

@@ -50,7 +50,14 @@ const SignUpModal = () => {
     setPasswordError(passwordErr);
 
     if (!nameErr && !emailErr && !passwordErr) {
-      dispatch(onSignUp(formValue))
+      const userBody ={
+        userInfo: {
+          name: formValue.name,
+          email: formValue.email
+        },
+        password: formValue.password
+      }
+      dispatch(onSignUp(userBody))
     }
   };
 

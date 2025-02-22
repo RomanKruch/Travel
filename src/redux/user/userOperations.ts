@@ -1,40 +1,25 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-// import axios from 'axios';
+import axios from 'axios';
 import { IState } from '../store';
 import ITourItem from '../../types/ITourItem';
-import { ISign, IUserInfoSing, ILogin, IUserInfo, IRefresh } from './types';
+import { ISign, IUserInfoSing, ILogin, IUserInfo, IRefresh, IDeletedTour } from './types';
 
-import toursBase from '../../data/tours';
-
-// const token = {
-//   set(token: string) {
-//     axios.defaults.headers.common.Authorization = `Bearer ${token}`;
-//   },
-//   unSet() {
-//     axios.defaults.headers.common.Authorization = '';
-//   },
-// };
+const token = {
+  set(token: string) {
+    axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+  },
+  unSet() {
+    axios.defaults.headers.common.Authorization = '';
+  },
+};
 
 export const onSignUp = createAsyncThunk<ISign, IUserInfoSing, { rejectValue: null }>(
   'user/signUp',
-  async (userInfo, { rejectWithValue }) => {
+  async (userBody, { rejectWithValue }) => {
     try {
-      //example
-
-      const { email, name } = userInfo;
-
-      const res = {
-        user: {
-          name,
-          email,
-        },
-        token: '123',
-      };
-      return res;
-
-      // const { data } = await axios.post('/auth/register', userInfo);
-      // token.set(data.data.token);
-      // return data.data;
+      const { data } = await axios.post('/auth/register', userBody);
+      token.set(data.token);
+      return data;
     } catch {
       return rejectWithValue(null);
     }
@@ -43,27 +28,11 @@ export const onSignUp = createAsyncThunk<ISign, IUserInfoSing, { rejectValue: nu
 
 export const onLogin = createAsyncThunk<ILogin, IUserInfo, { rejectValue: null }>(
   'user/login',
-  async (userInfo, { rejectWithValue }) => {
+  async (userData, { rejectWithValue }) => {
     try {
-      //example
-      const { email } = userInfo;
-
-      const res = {
-        user: {
-          name: 'user',
-          email,
-        },
-        token: '123',
-        likedTours: [],
-      };
-      return res;
-      // const { data } = await axios.post('/auth/login', userInfo);
-      // token.set(data.data.token);
-      // return {
-      //   ...data.data,
-      //   cart: data.data.cart.map((item: IProduct) => ({ ...item, qty: 1 })),
-      //   liked: data.data.liked,
-      // };
+      const { data } = await axios.post('/auth/login', userData);
+      token.set(data.token);
+      return data;
     } catch {
       return rejectWithValue(null);
     }
@@ -74,9 +43,9 @@ export const onLogout = createAsyncThunk<void, void, { rejectValue: null }>(
   'user/logout',
   async (_, { rejectWithValue }) => {
     try {
+      await axios.post('/auth/logout');
+      token.unSet();
       return;
-      // await axios.post('/auth/logout');
-      // token.unSet();
     } catch {
       return rejectWithValue(null);
     }
@@ -94,53 +63,25 @@ export const onRefresh = createAsyncThunk<IRefresh, void, { state: IState; rejec
     }
 
     try {
-      //example
-      const res = {
-        userInfo: {
-          name: 'Roman',
-          email: 'user@ex.com',
-        },
-        token: persistToken,
-        likedTours: [],
-      };
-
-      return res;
-      //   token.set(persistToken);
-      //   const {
-      //     data: { data },
-      //   } = await axios.get('/auth/refresh');
-      //   return {
-      //     userInfo: { ...data.user },
-      //     token: persistToken,
-      //     likedTours: data.liked,
-      //   };
+      token.set(persistToken);
+      const { data } = await axios.get('/auth/refresh');
+      return data;
     } catch {
       return rejectWithValue(null);
     }
   },
 );
 
-export const onAddToLike = createAsyncThunk<ITourItem, string, { rejectValue: null }>(
-  'user/addTourToLiked',
+export const onLikeTour = createAsyncThunk<ITourItem | string, string, { rejectValue: null }>(
+  'user/likeTour',
   async (tourId, { rejectWithValue }) => {
     try {
-      const tour = toursBase.find(({ id }) => id === tourId)!;
-      return tour;
+      const { data } = await axios.post(`/users/like/${tourId}`);
+      if (data.id) {
+        return data.id;
+      }
 
-      // const { data } = await axios.post('/liked', { productId });
-      // return data.data.newProduct;
-    } catch {
-      return rejectWithValue(null);
-    }
-  },
-);
-
-export const onDeleteFromLike = createAsyncThunk<string, string, { rejectValue: null }>(
-  'user/deleteTourFromLiked',
-  async (tourId, { rejectWithValue }) => {
-    try {
-      // await axios.delete(`/liked/${productId}`);
-      return tourId;
+      return data;
     } catch {
       return rejectWithValue(null);
     }

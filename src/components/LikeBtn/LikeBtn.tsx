@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import LikeIcon from '../../icons/LIkeIcon';
 import { useAppSelector, useAppDispatch } from '../../redux/hooks';
-import { onDeleteFromLike, onAddToLike } from '../../redux/user/userOperations';
+import { onLikeTour } from '../../redux/user/userOperations';
 import Button from '../Button/Button';
 import s from './LikeBtn.module.css';
 
@@ -11,7 +11,8 @@ interface IProps {
 }
 
 const LikeBtn = ({ id, classname = '' }: IProps) => {
-  const isInLiked = useAppSelector(state => state.user.likedTours.some(tour => tour.id === id));
+  const likedTours = useAppSelector(s => s.user.likedTours);
+  const isInLiked = likedTours.some(tour => tour._id === id);
   const isLogged = useAppSelector(s => s.user.isLogged);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
@@ -21,11 +22,7 @@ const LikeBtn = ({ id, classname = '' }: IProps) => {
       return navigate('/login');
     }
 
-    if (isInLiked) {
-      dispatch(onDeleteFromLike(id));
-    } else {
-      dispatch(onAddToLike(id));
-    }
+    dispatch(onLikeTour(id));
   };
   return (
     <Button onClick={onLikeBtn} className={`${s.btn} ${classname}`}>

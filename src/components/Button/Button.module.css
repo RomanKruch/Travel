@@ -21,6 +21,14 @@
     background-color: var(--btn_color);
 }
 
+.btn:disabled {
+    cursor: default;
+}
+
+.btn:disabled:hover {
+    background-color: var(--btn_color);;
+}
+
 @media (max-width: 767px) {
     .btn {
         height: 35px;

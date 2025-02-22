@@ -12,6 +12,7 @@ import UserPage from './pages/UserPage/UserPage';
 import Footer from './Modules/Footer/Footer';
 import PrivateRoute from './Router/PrivateRoute';
 import PublicRoute from './Router/PublicRoute';
+import './config/axiosConfig';
 
 const body = document.querySelector('body')!;
 
