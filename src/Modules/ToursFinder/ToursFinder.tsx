@@ -8,6 +8,7 @@ import Pagination from '../../components/Pagination/Pagination';
 import { useSearchParams } from 'react-router-dom';
 import axios from 'axios';
 import ToursList from '../../components/ToursList/ToursList';
+import Loader from '../../components/Loader/Loader';
 
 type TFormFields = 'title' | 'location' | 'price';
 
@@ -114,7 +115,7 @@ const ToursFinder = () => {
           </div>
         </form>
 
-        {loading ? <p>Loading...</p> : <ToursList tours={tours} />}
+        {loading ? <Loader /> : <ToursList tours={tours} />}
 
         <Pagination page={page} setPage={setPage} totalPages={totalPages} />
       </div>

@@ -3,15 +3,17 @@ import { createPortal } from 'react-dom';
 import Button from '../Button/Button';
 import CloseIcon from '../../icons/CloseIcon';
 import { useState } from 'react';
+import Loader from '../Loader/Loader';
 
 const modalRoot = document.getElementById('modal_root') as HTMLElement;
 
 interface IProps {
   onClose: () => void;
   children?: JSX.Element;
+  loading?: boolean;
 }
 
-const Modal = ({ onClose, children }: IProps) => {
+const Modal = ({ onClose, children, loading = false }: IProps) => {
   const [isClosing, setIsClosing] = useState(false);
 
   const onClickOver = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
@@ -26,16 +28,17 @@ const Modal = ({ onClose, children }: IProps) => {
   };
 
   return createPortal(
-    <div
-      className={`${s.overlay} ${isClosing ? s.overlay_closing : ''}`}
-      onClick={onClickOver}
-    >
-      <div className={`${s.modal} ${isClosing ? s.modal_closing : ''}`}>
-        <Button className={s.btn} onClick={onClick}>
-          <CloseIcon />
-        </Button>
-        {children}
-      </div>
+    <div className={`${s.overlay} ${isClosing ? s.overlay_closing : ''}`} onClick={onClickOver}>
+      {loading ? (
+        <Loader />
+      ) : (
+        <div className={`${s.modal} ${isClosing ? s.modal_closing : ''}`}>
+          <Button className={s.btn} onClick={onClick}>
+            <CloseIcon />
+          </Button>
+          {children}
+        </div>
+      )}
     </div>,
     modalRoot,
   );

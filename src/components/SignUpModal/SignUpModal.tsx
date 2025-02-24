@@ -5,8 +5,9 @@ import AdvancedInput from '../AdvancedInput/AdvancedInput';
 import { validateEmail, validatePassword, validateUsername } from '../../helpers/validation';
 import Modal from '../Modal/Modal';
 import { NavLink, useNavigate } from 'react-router-dom';
-import { useAppDispatch } from '../../redux/hooks';
+import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { onSignUp } from '../../redux/user/userOperations';
+import Loader from '../Loader/Loader';
 
 type TFormFields = 'name' | 'email' | 'password';
 
@@ -28,8 +29,8 @@ const SignUpModal = () => {
   const [emailError, setEmailError] = useState('');
   const [passwordError, setPasswordError] = useState('');
 
+  const isLogging = useAppSelector(s => s.user.isLogging);
   const navigate = useNavigate();
-
   const dispatch = useAppDispatch();
 
   const onChange = (field: TFormFields) => {
@@ -50,14 +51,14 @@ const SignUpModal = () => {
     setPasswordError(passwordErr);
 
     if (!nameErr && !emailErr && !passwordErr) {
-      const userBody ={
+      const userBody = {
         userInfo: {
           name: formValue.name,
-          email: formValue.email
+          email: formValue.email,
         },
-        password: formValue.password
-      }
-      dispatch(onSignUp(userBody))
+        password: formValue.password,
+      };
+      dispatch(onSignUp(userBody));
     }
   };
 
@@ -95,9 +96,13 @@ const SignUpModal = () => {
             className={s.inp}
           />
 
-          <Button className={s.btn} onClick={onSubmit}>
-            Sign Up
-          </Button>
+          {isLogging ? (
+            <Loader />
+          ) : (
+            <Button className={s.btn} onClick={onSubmit}>
+              Sign Up
+            </Button>
+          )}
         </form>
 
         <p className={s.redirect}>

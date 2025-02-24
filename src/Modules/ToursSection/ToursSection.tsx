@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import ToursList from '../../components/ToursList/ToursList';
 import axios from 'axios';
+import Loader from '../../components/Loader/Loader';
 
 const ToursSection = () => {
   const [tours, setTours] = useState<ITourItem[]>([]);
@@ -38,7 +39,7 @@ const ToursSection = () => {
       <div className="container">
         <Title>Top tours this month!</Title>
 
-        {loading ? <p>Loading ...</p> : <ToursList tours={tours} />}
+        {loading ? <Loader /> : <ToursList tours={tours} />}
 
         <Button onClick={onClick} className={s.btn}>
           See more...

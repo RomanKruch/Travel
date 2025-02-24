@@ -22,10 +22,10 @@ const TourModal = () => {
         if (!data) {
           navigate('/');
         }
-
         setTour(data);
       } catch (error) {
         console.error('Error fetching tours:', error);
+        navigate('/');
       } finally {
         setLoading(false);
       }
@@ -48,43 +48,37 @@ const TourModal = () => {
   };
 
   return (
-    <Modal onClose={onClose}>
+    <Modal onClose={onClose} loading={loading}>
       <div className={s.wrap}>
-        {loading ? (
-          <p>Loading...</p>
-        ) : (
-          <>
-            <div className={s.img_wrap}>
-              <img src={tour?.photo} alt={tour?.title} className={s.img} />
-              <LikeBtn id={id!} classname={s.like} />
-            </div>
+        <div className={s.img_wrap}>
+          <img src={tour?.photo} alt={tour?.title} className={s.img} />
+          <LikeBtn id={id!} classname={s.like} />
+        </div>
 
-            <div className={s.content_wrap}>
-              <h3 className={s.title}>{tour?.title}</h3>
-              <p className={s.description}>{tour?.description}</p>
-              <p className={s.description}>Location: {tour?.location}.</p>
-              <div className={s.map_wrap}>
-                <Map
-                  className={s.map}
-                  defaultCenter={tour?.cords}
-                  defaultZoom={8}
-                  disableDefaultUI={true}
-                  mapId={'39680ac205a82f46'}
-                  colorScheme={theme}
-                >
-                  <AdvancedMarker position={tour?.cords}>
-                    <Pin
-                      background={'var(--hover)'}
-                      borderColor={'var(--text_color)'}
-                      glyphColor={'var(--background_color)'}
-                    />
-                  </AdvancedMarker>
-                </Map>
-              </div>
-              <p className={s.price}>${tour?.price}</p>
-            </div>
-          </>
-        )}
+        <div className={s.content_wrap}>
+          <h3 className={s.title}>{tour?.title}</h3>
+          <p className={s.description}>{tour?.description}</p>
+          <p className={s.description}>Location: {tour?.location}.</p>
+          <div className={s.map_wrap}>
+            <Map
+              className={s.map}
+              defaultCenter={tour?.cords}
+              defaultZoom={8}
+              disableDefaultUI={true}
+              mapId={'39680ac205a82f46'}
+              colorScheme={theme}
+            >
+              <AdvancedMarker position={tour?.cords}>
+                <Pin
+                  background={'var(--hover)'}
+                  borderColor={'var(--text_color)'}
+                  glyphColor={'var(--background_color)'}
+                />
+              </AdvancedMarker>
+            </Map>
+          </div>
+          <p className={s.price}>${tour?.price}</p>
+        </div>
       </div>
     </Modal>
   );
