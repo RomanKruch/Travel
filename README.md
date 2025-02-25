@@ -4,11 +4,7 @@ TODO:
 
 1. ROUTE PAGE ?
 2. ABOUT US PAGE?
-3. ADAPTIVE!!
-4. PRIVATE AND PUBLIC ROUTES
-
-
-FINALLY START DEVELOPING BACKEND
+3.DEV !add lazy in router after backend?
 
 ### Основний функціонал
 
@@ -58,7 +54,3 @@ FINALLY START DEVELOPING BACKEND
 4 Особистий кабінет
 
 Збережені маршрути. Трекер витрат. Сповіщення про зміни цін.
-
-DEV !add lazy in router after backend
-
-Maybe try module SCSS?

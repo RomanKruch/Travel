@@ -22,6 +22,7 @@
 }
 
 .content_wrap {
+    height: 100%;
     padding: 20px 20px 40px;
 }
 
@@ -34,7 +35,7 @@
 }
 
 .description {
-    font-size: 24px;
+    font-size: 22px;
     margin-bottom: 20px;
     color: var(--text_color)
 }
@@ -74,7 +75,6 @@
     }
 
     .description {
-        font-size: 22px;
         margin-bottom: 10px;
     }
 
