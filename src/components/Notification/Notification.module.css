@@ -1,0 +1,50 @@
+.notification {
+    padding: 10px 20px;
+    border-radius: 5px;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    opacity: 0;
+    transform: translateX(100%);
+    animation: slideIn 0.3s forwards;
+  }
+  
+  .notification.success {
+    background: #4caf50;
+  }
+  
+  .notification.error {
+    background: var(--error_color);
+  }
+  
+  .notification.info {
+    background: var(--primary_color);
+  }
+
+  .notification.closing {
+    animation: fadeOut 0.3s forwards;
+
+  }
+  
+  @keyframes slideIn {
+    from {
+      opacity: 0;
+      transform: translateX(100%);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  
+  @keyframes fadeOut {
+    from {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    to {
+      opacity: 0;
+      transform: translateX(100%);
+    }
+  }
+  

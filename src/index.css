@@ -10,9 +10,6 @@
   --hover: #fd4c3c;
   --input_hover: #06b6d5;
   --error_color: #ff2c2c;
-
-  --breakpoint-tablet: 768px; 
-  --breakpoint-laptop: 1024px; 
 }
 
 .dark {

@@ -3,6 +3,7 @@ import axios from 'axios';
 import { IState } from '../store';
 import ITourItem from '../../types/ITourItem';
 import { ISign, IUserInfoSing, ILogin, IUserInfo, IRefresh } from './types';
+import { addNotification } from '../notifications/notificationsSlice';
 
 const token = {
   set(token: string) {
@@ -15,12 +16,15 @@ const token = {
 
 export const onSignUp = createAsyncThunk<ISign, IUserInfoSing, { rejectValue: null }>(
   'user/signUp',
-  async (userBody, { rejectWithValue }) => {
+  async (userBody, { rejectWithValue, dispatch }) => {
     try {
       const { data } = await axios.post('/auth/register', userBody);
       token.set(data.token);
+      dispatch(addNotification({ message: 'Sign up successful!', type: 'success' }));
       return data;
-    } catch {
+    } catch (err: any) {
+      const { message } = err?.response.data;
+      dispatch(addNotification({ message, type: 'error' }));
       return rejectWithValue(null);
     }
   },
@@ -28,12 +32,15 @@ export const onSignUp = createAsyncThunk<ISign, IUserInfoSing, { rejectValue: nu
 
 export const onLogin = createAsyncThunk<ILogin, IUserInfo, { rejectValue: null }>(
   'user/login',
-  async (userData, { rejectWithValue }) => {
+  async (userData, { rejectWithValue, dispatch }) => {
     try {
       const { data } = await axios.post('/auth/login', userData);
       token.set(data.token);
+      dispatch(addNotification({ message: 'Log in successful!', type: 'success' }));
       return data;
-    } catch {
+    } catch (err: any) {
+      const { message } = err?.response.data;
+      dispatch(addNotification({ message, type: 'error' }));
       return rejectWithValue(null);
     }
   },
@@ -41,10 +48,11 @@ export const onLogin = createAsyncThunk<ILogin, IUserInfo, { rejectValue: null }
 
 export const onLogout = createAsyncThunk<void, void, { rejectValue: null }>(
   'user/logout',
-  async (_, { rejectWithValue }) => {
+  async (_, { rejectWithValue, dispatch }) => {
     try {
       await axios.post('/auth/logout');
       token.unSet();
+      dispatch(addNotification({ message: 'Logout successful!', type: 'info' }));
       return;
     } catch {
       return rejectWithValue(null);

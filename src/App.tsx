@@ -13,6 +13,7 @@ import Footer from './Modules/Footer/Footer';
 import PrivateRoute from './Router/PrivateRoute';
 import PublicRoute from './Router/PublicRoute';
 import './config/axiosConfig';
+import { NotificationContainer } from './components/NotificationContainer/NotificationContainer';
 
 const body = document.querySelector('body')!;
 
@@ -57,6 +58,8 @@ function App() {
       </Routes>
 
       <Footer />
+
+      <NotificationContainer />
     </>
   );
 }
