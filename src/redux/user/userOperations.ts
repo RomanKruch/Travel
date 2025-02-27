@@ -54,7 +54,9 @@ export const onLogout = createAsyncThunk<void, void, { rejectValue: null }>(
       token.unSet();
       dispatch(addNotification({ message: 'Logout successful!', type: 'info' }));
       return;
-    } catch {
+    } catch (err: any) {
+      const { message } = err?.response.data;
+      dispatch(addNotification({ message, type: 'error' }));
       return rejectWithValue(null);
     }
   },
@@ -82,7 +84,7 @@ export const onRefresh = createAsyncThunk<IRefresh, void, { state: IState; rejec
 
 export const onLikeTour = createAsyncThunk<ITourItem | string, string, { rejectValue: null }>(
   'user/likeTour',
-  async (tourId, { rejectWithValue }) => {
+  async (tourId, { rejectWithValue, dispatch }) => {
     try {
       const { data } = await axios.post(`/users/like/${tourId}`);
       if (data.id) {
@@ -90,7 +92,9 @@ export const onLikeTour = createAsyncThunk<ITourItem | string, string, { rejectV
       }
 
       return data;
-    } catch {
+    } catch (err: any) {
+      const { message } = err?.response.data;
+      dispatch(addNotification({ message, type: 'error' }));
       return rejectWithValue(null);
     }
   },
