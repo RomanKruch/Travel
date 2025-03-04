@@ -14,6 +14,10 @@ import PrivateRoute from './Router/PrivateRoute';
 import PublicRoute from './Router/PublicRoute';
 import './config/axiosConfig';
 import { NotificationContainer } from './components/NotificationContainer/NotificationContainer';
+import UserSettingsModal from './components/UserSettingsModal/UserSettingsModal';
+import EditUserModal from './components/EditUserModal/EditUserModal';
+import ChangePasswordModal from './components/ChangePasswordModal/ChangePasswordModal';
+import DeleteAccountModal from './components/DeleteAccountModal/DeleteAccountModal';
 
 const body = document.querySelector('body')!;
 
@@ -52,6 +56,10 @@ function App() {
 
         <Route element={<PrivateRoute />}>
           <Route path="user" element={<UserPage />}>
+            <Route path="settings" element={<UserSettingsModal />} />
+            <Route path="edit" element={<EditUserModal />} />
+            <Route path="changePassword" element={<ChangePasswordModal />} />
+            <Route path="deleteAccount" element={<DeleteAccountModal />} />
             <Route path=":id" element={<TourModal />} />
           </Route>
         </Route>

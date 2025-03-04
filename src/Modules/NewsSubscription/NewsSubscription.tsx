@@ -12,7 +12,8 @@ const NewsSubscription = () => {
   const [inpValue, setInpValue] = useState('');
   const dispatch = useAppDispatch();
 
-  const onSubmit = async () => {
+  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
     if (validateEmail(inpValue)) return;
     try {
       const { data } = await axios.post('subscribe', { email: inpValue });
@@ -28,9 +29,9 @@ const NewsSubscription = () => {
     <section>
       <div className="container">
         <Title>Subscription to the news</Title>
-        <form onSubmit={e => e.preventDefault()} className={s.form}>
+        <form onSubmit={onSubmit} className={s.form}>
           <Input text="Your email..." value={inpValue} setValue={setInpValue} className={s.input} />
-          <Button className={s.btn} onClick={onSubmit}>
+          <Button className={s.btn} type="submit">
             Subscribe
           </Button>
         </form>

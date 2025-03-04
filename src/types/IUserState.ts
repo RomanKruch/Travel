@@ -8,6 +8,7 @@ interface IUserState {
   token: null | string;
   isLogging: boolean;
   isLogged: boolean;
+  totalToursViewed: number;
 
   likedTours: ITourItem[];
 }

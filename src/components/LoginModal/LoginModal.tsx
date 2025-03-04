@@ -40,7 +40,8 @@ const LoginModal = () => {
       });
   };
 
-  const onSubmit = () => {
+  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
     const emailErr = validateEmail(formValue.email);
     const passwordErr = validatePassword(formValue.password);
 
@@ -61,7 +62,7 @@ const LoginModal = () => {
       <div className={s.wrap}>
         <h2 className={s.title}>Login</h2>
 
-        <form onSubmit={e => e.preventDefault()} className={s.form}>
+        <form onSubmit={onSubmit} className={s.form}>
           <AdvancedInput
             placeholder="Email"
             value={formValue.email}
@@ -80,7 +81,7 @@ const LoginModal = () => {
           {isLogging ? (
             <Loader />
           ) : (
-            <Button className={s.btn} onClick={onSubmit}>
+            <Button className={s.btn} type="submit">
               Login
             </Button>
           )}

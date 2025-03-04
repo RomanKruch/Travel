@@ -76,7 +76,8 @@ const ToursFinder = () => {
       });
   };
 
-  const onSubmit = () => {
+  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
     fetchTours(page, params);
   };
 
@@ -88,7 +89,7 @@ const ToursFinder = () => {
   return (
     <section className={s.section}>
       <div className={`container ${s.wrap}`}>
-        <form onSubmit={e => e.preventDefault()} className={s.form}>
+        <form onSubmit={onSubmit} className={s.form}>
           <label className={s.label}>
             Filter by name:
             <Input text="Write name of tour..." value={params.title} setValue={onChange('title')} />
@@ -111,7 +112,7 @@ const ToursFinder = () => {
 
           <div className={s.btn_wrap}>
             <Button onClick={onReset}>Reset</Button>
-            <Button onClick={onSubmit}>Find</Button>
+            <Button type="submit">Find</Button>
           </div>
         </form>
 

@@ -1,39 +1,38 @@
 import ITourItem from '../../types/ITourItem';
 
+export interface IUserInfo {
+  name: string;
+  email: string;
+}
+
 export interface ISign {
-  userInfo: {
-    name: string;
-    email: string;
-  };
+  userInfo: IUserInfo;
   token: string;
 }
 
-export interface IUserInfoSing {
-  userInfo: {
-    name: string;
-    email: string;
-  };
+export interface IUserDataSign {
+  userInfo: IUserInfo;
   password: string;
 }
 
 export interface ILogin {
-  userInfo: {
-    name: string;
-    email: string;
-  };
+  userInfo: IUserInfo;
   token: string;
   likedTours: ITourItem[];
 }
-export interface IUserInfo {
+
+export interface IUserDataLogin {
   email: string;
   password: string;
 }
 
 export interface IRefresh {
-  userInfo: {
-    name: string;
-    email: string;
-  };
+  userInfo: IUserInfo;
   token: string;
   likedTours: ITourItem[];
+}
+
+export interface IChangePassword {
+  oldPassword: string;
+  newPassword: string;
 }

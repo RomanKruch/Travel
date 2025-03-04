@@ -41,7 +41,8 @@ const SignUpModal = () => {
       });
   };
 
-  const onSubmit = () => {
+  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
     const nameErr = validateUsername(formValue.name);
     const emailErr = validateEmail(formValue.email);
     const passwordErr = validatePassword(formValue.password);
@@ -71,7 +72,7 @@ const SignUpModal = () => {
       <div className={s.wrap}>
         <h2 className={s.title}>Sign Up</h2>
 
-        <form onSubmit={e => e.preventDefault()} className={s.form}>
+        <form onSubmit={onSubmit} className={s.form}>
           <AdvancedInput
             placeholder="Username"
             value={formValue.name}
@@ -99,7 +100,7 @@ const SignUpModal = () => {
           {isLogging ? (
             <Loader />
           ) : (
-            <Button className={s.btn} onClick={onSubmit}>
+            <Button className={s.btn} type="submit">
               Sign Up
             </Button>
           )}

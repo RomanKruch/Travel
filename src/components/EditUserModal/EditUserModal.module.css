@@ -1,0 +1,28 @@
+.wrap {
+    width: 400px;
+    max-width: 100%;
+    padding: 40px;
+    text-align: center;
+}
+
+.title {
+    font-size: 40px;
+    line-height: 50px;
+    margin-bottom: 40px;
+}
+
+.inp {
+    margin-bottom: 20px;
+}
+
+.btn {
+    width: 100%;
+    margin: 0 auto;
+}
+
+@media (max-width: 767px) {
+    .title {
+        font-size: 28px;
+        margin-bottom: 20px;
+    }
+}

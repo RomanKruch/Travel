@@ -6,14 +6,22 @@ interface IProps {
   onClick?: () => void;
   children?: ReactElement | string;
   disabled?: boolean;
+  type?: 'submit' | 'button';
 }
 
-const Button = ({ onClick, className = '', children, disabled = false }: IProps) => {
+const Button = ({
+  onClick,
+  className = '',
+  children,
+  disabled = false,
+  type = 'button',
+}: IProps) => {
   return (
     <button
       className={className ? s.btn + ' ' + className : s.btn}
       onClick={onClick}
       disabled={disabled}
+      type={type}
     >
       {children}
     </button>

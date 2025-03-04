@@ -2,14 +2,16 @@ import s from './TourModal.module.css';
 import { Map, AdvancedMarker, Pin, ColorScheme } from '@vis.gl/react-google-maps';
 import Modal from '../Modal/Modal';
 import { useNavigate, useParams, useLocation } from 'react-router-dom';
-import { useAppSelector } from '../../redux/hooks';
+import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import LikeBtn from '../LikeBtn/LikeBtn';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
 import ITourItem from '../../types/ITourItem';
+import { addNotification } from '../../redux/notifications/notificationsSlice';
 
 const TourModal = () => {
   const { id } = useParams();
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const [tour, setTour] = useState<ITourItem | null>(null);
   const [loading, setLoading] = useState(true);
@@ -23,8 +25,9 @@ const TourModal = () => {
           navigate('/');
         }
         setTour(data);
-      } catch (error) {
-        console.error('Error fetching tours:', error);
+      } catch (err: any) {
+        const { message } = err?.response.data;
+        dispatch(addNotification({ message, type: 'error' }));
         navigate('/');
       } finally {
         setLoading(false);
@@ -33,8 +36,6 @@ const TourModal = () => {
 
     fetchTours();
   }, []);
-
-  // const { description, location, photo, price, title, cords } = tour;
 
   const routeLocation = useLocation();
   const path = routeLocation.state?.from || '/';

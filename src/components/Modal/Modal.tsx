@@ -28,7 +28,7 @@ const Modal = ({ onClose, children, loading = false }: IProps) => {
   };
 
   return createPortal(
-    <div className={`${s.overlay} ${isClosing ? s.overlay_closing : ''}`} onClick={onClickOver}>
+    <div className={`${s.overlay} ${isClosing ? s.overlay_closing : ''}`} onMouseDown={onClickOver}>
       {loading ? (
         <Loader />
       ) : (

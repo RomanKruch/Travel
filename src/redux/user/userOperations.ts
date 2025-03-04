@@ -2,7 +2,14 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { IState } from '../store';
 import ITourItem from '../../types/ITourItem';
-import { ISign, IUserInfoSing, ILogin, IUserInfo, IRefresh } from './types';
+import {
+  ISign,
+  IUserDataLogin,
+  ILogin,
+  IUserDataSign,
+  IRefresh,
+  IUserInfo,
+} from './types';
 import { addNotification } from '../notifications/notificationsSlice';
 
 const token = {
@@ -14,7 +21,7 @@ const token = {
   },
 };
 
-export const onSignUp = createAsyncThunk<ISign, IUserInfoSing, { rejectValue: null }>(
+export const onSignUp = createAsyncThunk<ISign, IUserDataSign, { rejectValue: null }>(
   'user/signUp',
   async (userBody, { rejectWithValue, dispatch }) => {
     try {
@@ -30,7 +37,7 @@ export const onSignUp = createAsyncThunk<ISign, IUserInfoSing, { rejectValue: nu
   },
 );
 
-export const onLogin = createAsyncThunk<ILogin, IUserInfo, { rejectValue: null }>(
+export const onLogin = createAsyncThunk<ILogin, IUserDataLogin, { rejectValue: null }>(
   'user/login',
   async (userData, { rejectWithValue, dispatch }) => {
     try {
@@ -92,6 +99,21 @@ export const onLikeTour = createAsyncThunk<ITourItem | string, string, { rejectV
       }
 
       return data;
+    } catch (err: any) {
+      const { message } = err?.response.data;
+      dispatch(addNotification({ message, type: 'error' }));
+      return rejectWithValue(null);
+    }
+  },
+);
+
+export const onEditUser = createAsyncThunk<IUserInfo, IUserInfo, { rejectValue: null }>(
+  'user/edit',
+  async (userData, { rejectWithValue, dispatch }) => {
+    try {
+      const { data } = await axios.patch('/users', userData);
+      dispatch(addNotification({ message: 'Edit successful!', type: 'success' }));
+      return data.userInfo;
     } catch (err: any) {
       const { message } = err?.response.data;
       dispatch(addNotification({ message, type: 'error' }));

@@ -1,11 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import {
-  onSignUp,
-  onLogin,
-  onLogout,
-  onRefresh,
-  onLikeTour,
-} from './userOperations';
+import { onSignUp, onLogin, onLogout, onRefresh, onLikeTour, onEditUser } from './userOperations';
 import IUserState from '../../types/IUserState';
 
 const initialState: IUserState = {
@@ -16,6 +10,7 @@ const initialState: IUserState = {
   token: null,
   isLogging: false,
   isLogged: false,
+  totalToursViewed: 0,
   likedTours: [],
 };
 
@@ -23,7 +18,11 @@ const userSlice = createSlice({
   name: 'user',
   initialState,
 
-  reducers: {},
+  reducers: {
+    onAccDelete() {
+      return initialState;
+    },
+  },
   extraReducers: builder => {
     builder
       .addCase(onSignUp.pending, state => ({
@@ -33,8 +32,7 @@ const userSlice = createSlice({
 
       .addCase(onSignUp.fulfilled, (_, { payload }) => ({
         ...initialState,
-        userInfo: payload.userInfo,
-        token: payload.token,
+        ...payload,
         isLogged: true,
       }))
 
@@ -50,10 +48,8 @@ const userSlice = createSlice({
 
       .addCase(onLogin.fulfilled, (_, { payload }) => ({
         ...initialState,
-        userInfo: payload.userInfo,
-        token: payload.token,
+        ...payload,
         isLogged: true,
-        likedTours: payload.likedTours,
       }))
 
       .addCase(onLogin.rejected, state => ({
@@ -72,9 +68,7 @@ const userSlice = createSlice({
 
       .addCase(onRefresh.fulfilled, (_, { payload }) => ({
         ...initialState,
-        userInfo: payload.userInfo,
-        token: payload.token,
-        likedTours: payload.likedTours,
+        ...payload,
         isLogged: true,
       }))
 
@@ -96,7 +90,25 @@ const userSlice = createSlice({
           likedTours: [...state.likedTours, payload],
         };
       })
+
+      .addCase(onEditUser.pending, state => ({
+        ...state,
+        isLogging: true,
+      }))
+
+      .addCase(onEditUser.fulfilled, (state, { payload }) => ({
+        ...state,
+        userInfo: payload,
+        isLogging: false,
+      }))
+
+      .addCase(onEditUser.rejected, state => ({
+        ...state,
+        isLogging: false,
+      }));
   },
 });
+
+export const { onAccDelete } = userSlice.actions;
 
 export default userSlice.reducer;
