@@ -1,11 +1,11 @@
 import s from './ToursFinder.module.css';
 import ITourItem from '../../types/ITourItem';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Input from '../../components/Input/Input';
 import RangeInput from '../../components/RangeInput/RangeInput';
 import Button from '../../components/Button/Button';
 import Pagination from '../../components/Pagination/Pagination';
-import { useSearchParams } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import axios from 'axios';
 import ToursList from '../../components/ToursList/ToursList';
 import Loader from '../../components/Loader/Loader';
@@ -31,29 +31,31 @@ const ToursFinder = () => {
 
   const [params, setParams] = useState(initParams);
   const [page, setPage] = useState(1);
-
   const [query] = useSearchParams();
+  const navigate = useNavigate();
+  const isFirstRender = useRef(true);
 
   useEffect(() => {
-    const des = query.get('des');
-    const loc = query.get('loc');
-    const localParams = initParams;
-
-    if (des) {
-      localParams.title = des;
-      onChange('title')(des);
+    if (isFirstRender.current) {
+      isFirstRender.current = false;
+      return;
     }
-    if (loc) {
-      localParams.location = loc;
-      onChange('location')(loc);
-    }
-
-    fetchTours(page, localParams);
-  }, []);
-
-  useEffect(() => {
     fetchTours(page, params);
   }, [page]);
+
+  useEffect(() => {
+    const title = query.get('title') || '';
+    const location = query.get('location') || '';
+
+    const newParams = {
+      ...initParams,
+      title,
+      location,
+    };
+
+    setParams(newParams);
+    fetchTours(1, newParams);
+  }, [query]);
 
   const fetchTours = async (page = 1, params: IParams) => {
     try {
@@ -70,10 +72,10 @@ const ToursFinder = () => {
 
   const onChange = (field: TFormFields) => {
     return (value: string | number) =>
-      setParams(s => {
-        const newState = { ...s, [field]: value };
-        return newState;
-      });
+      setParams(s => ({
+        ...s,
+        [field]: value,
+      }));
   };
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -82,8 +84,10 @@ const ToursFinder = () => {
   };
 
   const onReset = () => {
+    navigate('/tours');
     setParams(initParams);
-    fetchTours(page, initParams);
+    setPage(1);
+    fetchTours(1, initParams);
   };
 
   return (

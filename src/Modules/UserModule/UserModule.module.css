@@ -34,6 +34,7 @@
 }
 
 .btn {
+    width: fit-content;
     padding: 7px;
 }
 

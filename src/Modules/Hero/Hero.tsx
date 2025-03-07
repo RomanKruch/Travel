@@ -32,38 +32,43 @@ const Hero = () => {
       });
   };
 
-  const onClick = () => {
-    if (formValue.destination || formValue.location) {
-      navigate({
-        pathname: '/tours',
-        search: `?${createSearchParams({
-          des: formValue.destination,
-          loc: formValue.location,
-        })}`,
-      });
+  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const searchParams = new URLSearchParams();
+
+    if (formValue.destination) {
+      searchParams.append('title', formValue.destination);
     }
+    if (formValue.location) {
+      searchParams.append('location', formValue.location);
+    }
+
+    navigate({
+      pathname: '/tours',
+      search: `?${searchParams.toString()}`,
+    });
   };
 
   return (
     <section className={isDark ? `${s.hero} ${s.hero_dark}` : s.hero}>
-        <div className={s.title_wrap}>
-          <h1 className={s.title}>
-            top budget <br /> destinations
-          </h1>
-          <p className={s.subtitle}>
-            Explore the world's best destinations and create unforgettable memories.
-          </p>
-        </div>
+      <div className={s.title_wrap}>
+        <h1 className={s.title}>
+          top budget <br /> destinations
+        </h1>
+        <p className={s.subtitle}>
+          Explore the world's best destinations and create unforgettable memories.
+        </p>
+      </div>
 
-        <div className={s.input_wrap}>
-          <Input
-            text="Destinations..."
-            value={formValue.destination}
-            setValue={onChange('destination')}
-          />
-          <Input text="Location..." value={formValue.location} setValue={onChange('location')} />
-          <Button onClick={onClick}>Find</Button>
-        </div>
+      <form className={s.input_wrap} onSubmit={onSubmit}>
+        <Input
+          text="Destinations..."
+          value={formValue.destination}
+          setValue={onChange('destination')}
+        />
+        <Input text="Location..." value={formValue.location} setValue={onChange('location')} />
+        <Button type="submit">Find</Button>
+      </form>
     </section>
   );
 };
