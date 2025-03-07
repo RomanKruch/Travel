@@ -34,8 +34,8 @@
 }
 
 .btn {
-    width: fit-content;
-    padding: 7px;
+    width: 45px;
+    padding: 5px;
 }
 
 @media (max-width: 767px) {
@@ -45,5 +45,9 @@
 
     .subtitle {
         font-size: 20px;
+    }
+
+    .btn {
+        width: 35px;
     }
 }
