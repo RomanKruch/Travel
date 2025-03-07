@@ -3,7 +3,7 @@ import Input from '../../components/Input/Input';
 import s from './Hero.module.css';
 import Button from '../../components/Button/Button';
 import { useAppSelector } from '../../redux/hooks';
-import { createSearchParams, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 type TFormFields = 'destination' | 'location';
 
