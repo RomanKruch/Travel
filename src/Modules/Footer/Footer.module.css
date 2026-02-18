@@ -21,7 +21,7 @@
 }
 
 .copyright {
-    font-size: 20px;
+    font-size: 18px;
     color: var(--text_color)
 }
 
@@ -39,6 +39,6 @@
     }
 
     .copyright {
-        font-size: 16px;
+        font-size: 14px;
     }
 }
